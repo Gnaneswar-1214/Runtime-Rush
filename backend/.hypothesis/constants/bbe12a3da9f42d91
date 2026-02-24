@@ -1,0 +1,4 @@
+# file: D:\RuntimeRush\backend\app\models\session.py
+# hypothesis_version: 6.151.9
+
+['Challenge', 'User', 'challenges.id', 'participant_sessions', 'sessions', 'users.id']

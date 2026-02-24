@@ -1,0 +1,4 @@
+# file: D:\RuntimeRush\backend\app\models\submission.py
+# hypothesis_version: 6.151.9
+
+['Challenge', 'User', 'challenge_id', 'challenges.id', 'is_correct', 'participant_id', 'submissions', 'timestamp', 'users.id']

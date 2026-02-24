@@ -1,0 +1,4 @@
+# file: D:\RuntimeRush\backend\app\managers\submission_manager.py
+# hypothesis_version: 6.151.9
+
+[0.1, 'Challenge has ended', 'actualOutput', 'allTestsPassed', 'executionTime', 'expectedOutput', 'isValid', 'mock output', 'passed', 'syntaxErrors', 'testCaseId', 'testResults']

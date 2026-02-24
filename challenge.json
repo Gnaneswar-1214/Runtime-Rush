@@ -1,0 +1,30 @@
+{
+  "title": "Fix the Hello World Bug",
+  "description": "The code below should print 'Hello, World!' but it has a bug. Fix the code and make it work!",
+  "language": "python",
+  "fragments": [
+    {
+      "content": "def greet():",
+      "original_order": 1
+    },
+    {
+      "content": "    print('Hello, World!')",
+      "original_order": 2
+    },
+    {
+      "content": "greet()",
+      "original_order": 3
+    }
+  ],
+  "correct_solution": "def greet():\n    print('Hello, World!')\n\ngreet()",
+  "test_cases": [
+    {
+      "input": "",
+      "expected_output": "Hello, World!",
+      "visible": true
+    }
+  ],
+  "start_time": "2026-02-18T18:00:00",
+  "end_time": "2026-02-18T23:59:59",
+  "created_by": "00000000-0000-0000-0000-000000000001"
+}

@@ -1,0 +1,4 @@
+# file: D:\RuntimeRush\backend\app\models\__init__.py
+# hypothesis_version: 6.151.9
+
+['Challenge', 'CodeFragment', 'ParticipantSession', 'Submission', 'TestCase', 'User', 'Winner']

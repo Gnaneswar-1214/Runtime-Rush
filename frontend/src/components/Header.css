@@ -1,0 +1,343 @@
+/* Professional Header - Purple + Electric Pink Theme */
+
+.app-header-with-logos {
+  background: linear-gradient(135deg, #0f1419 0%, #1a1f2e 50%, #0f1419 100%);
+  color: white;
+  padding: 0;
+  box-shadow: 0 8px 32px rgba(139, 92, 246, 0.3),
+              0 0 0 1px rgba(139, 92, 246, 0.1);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  border-bottom: 3px solid transparent;
+  border-image: linear-gradient(90deg, #8b5cf6, #ff0080, #8b5cf6) 1;
+}
+
+/* Animated background gradient */
+.app-header-with-logos::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(139, 92, 246, 0.1) 25%, 
+    rgba(255, 0, 128, 0.1) 50%, 
+    rgba(139, 92, 246, 0.1) 75%, 
+    transparent 100%);
+  animation: shimmer 8s linear infinite;
+  z-index: 0;
+}
+
+@keyframes shimmer {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+/* Subtle glow effect */
+.app-header-with-logos::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, transparent 70%);
+  transform: translate(-50%, -50%);
+  animation: pulse 6s ease-in-out infinite;
+  z-index: 0;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
+  50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.8; }
+}
+
+.header-logo {
+  width: 90px;
+  height: 90px;
+  object-fit: contain;
+  position: relative;
+  z-index: 2;
+  filter: drop-shadow(0 4px 16px rgba(139, 92, 246, 0.4));
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 20px;
+}
+
+.header-logo:hover {
+  transform: scale(1.1) rotate(5deg);
+  filter: drop-shadow(0 8px 24px rgba(255, 0, 128, 0.6));
+}
+
+.header-logo-left {
+  margin-left: 20px;
+  animation: slideInLeft 0.8s ease-out;
+}
+
+.header-logo-right {
+  margin-right: 20px;
+  animation: slideInRight 0.8s ease-out;
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.header-content {
+  flex: 1;
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 30px 20px;
+}
+
+.header-content h1 {
+  margin: 0 0 12px 0;
+  font-size: 3.2em;
+  font-weight: 900;
+  letter-spacing: 2px;
+  animation: titleReveal 1s ease-out;
+  background: linear-gradient(135deg, #ffffff 0%, #e0d4ff 50%, #ffffff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: none;
+  position: relative;
+  display: inline-block;
+}
+
+.header-content h1::before {
+  content: '⚡';
+  position: absolute;
+  left: -50px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.8em;
+  animation: sparkle 2s ease-in-out infinite;
+}
+
+@keyframes sparkle {
+  0%, 100% { opacity: 0.5; transform: translateY(-50%) scale(1); }
+  50% { opacity: 1; transform: translateY(-50%) scale(1.2); }
+}
+
+.header-content h1::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #8b5cf6, #ff0080, #8b5cf6, transparent);
+  border-radius: 2px;
+  animation: underlineGlow 3s ease-in-out infinite;
+}
+
+@keyframes underlineGlow {
+  0%, 100% { box-shadow: 0 0 10px rgba(139, 92, 246, 0.5); }
+  50% { box-shadow: 0 0 20px rgba(255, 0, 128, 0.8); }
+}
+
+@keyframes titleReveal {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+    filter: blur(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+.header-content p {
+  margin: 20px 0 0 0;
+  font-size: 1.15em;
+  color: #b8a3e8;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  animation: fadeInUp 1.2s ease-out 0.3s both;
+  position: relative;
+}
+
+.header-content p::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: -10px;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #8b5cf6, transparent);
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* User info and actions */
+.header-content > div {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.header-content button {
+  padding: 10px 24px;
+  background: rgba(139, 92, 246, 0.2);
+  border: 2px solid rgba(139, 92, 246, 0.4);
+  border-radius: 12px;
+  color: #e0d4ff;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.header-content button:hover {
+  background: linear-gradient(135deg, #8b5cf6, #ff0080);
+  border-color: #8b5cf6;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4);
+}
+
+/* Responsive design */
+@media (max-width: 1024px) {
+  .header-content h1 {
+    font-size: 2.8em;
+  }
+  
+  .header-content h1::before {
+    left: -40px;
+    font-size: 0.7em;
+  }
+}
+
+@media (max-width: 768px) {
+  .app-header-with-logos {
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px 0;
+  }
+  
+  .header-logo {
+    width: 70px;
+    height: 70px;
+    padding: 10px;
+  }
+  
+  .header-logo-left,
+  .header-logo-right {
+    margin: 0;
+  }
+  
+  .header-content {
+    padding: 20px;
+  }
+  
+  .header-content h1 {
+    font-size: 2.2em;
+    letter-spacing: 1px;
+  }
+  
+  .header-content h1::before {
+    position: relative;
+    left: 0;
+    margin-right: 10px;
+    transform: none;
+  }
+  
+  .header-content p {
+    font-size: 1em;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-logo {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .header-content h1 {
+    font-size: 1.8em;
+  }
+  
+  .header-content p {
+    font-size: 0.9em;
+    letter-spacing: 1px;
+  }
+  
+  .header-content button {
+    padding: 8px 18px;
+    font-size: 12px;
+  }
+}
+
+/* Additional professional touches */
+.header-badge {
+  display: inline-block;
+  padding: 6px 16px;
+  background: rgba(139, 92, 246, 0.2);
+  border: 1px solid rgba(139, 92, 246, 0.4);
+  border-radius: 20px;
+  font-size: 0.85em;
+  font-weight: 600;
+  color: #e0d4ff;
+  margin: 0 8px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.header-user-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 20px;
+  background: rgba(139, 92, 246, 0.15);
+  border-radius: 24px;
+  border: 1px solid rgba(139, 92, 246, 0.3);
+}
+
+.header-user-info span {
+  color: #ffffff;
+  font-weight: 600;
+}

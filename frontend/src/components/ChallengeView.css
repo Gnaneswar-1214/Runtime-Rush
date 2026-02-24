@@ -1,0 +1,494 @@
+.challenge-view {
+  min-height: 100vh;
+  background: #f5f5f5;
+}
+
+.challenge-header {
+  background: white;
+  padding: 20px;
+  border-bottom: 2px solid #e0e0e0;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.back-button {
+  padding: 8px 16px;
+  background: #6c757d;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.back-button:hover {
+  background: #5a6268;
+}
+
+.challenge-header h1 {
+  flex: 1;
+  margin: 0;
+  color: #333;
+}
+
+.challenge-content {
+  display: grid;
+  grid-template-columns: 350px 1fr;
+  gap: 20px;
+  padding: 20px;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+.challenge-info {
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  height: fit-content;
+}
+
+.info-section {
+  margin-bottom: 24px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.info-section:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.info-section h3 {
+  margin: 0 0 12px 0;
+  color: #333;
+  font-size: 1.1em;
+}
+
+.info-section p {
+  color: #666;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.info-section ul {
+  margin: 0;
+  padding-left: 20px;
+  color: #666;
+}
+
+.info-section ul li {
+  margin: 8px 0;
+  line-height: 1.5;
+}
+
+.test-case {
+  background: #f8f9fa;
+  padding: 12px;
+  border-radius: 4px;
+  margin: 8px 0;
+}
+
+.test-input {
+  margin-top: 4px;
+  font-family: monospace;
+  color: #555;
+}
+
+.info-section.meta {
+  font-size: 0.95em;
+}
+
+.info-section.meta div {
+  margin: 8px 0;
+  color: #666;
+}
+
+.editor-section {
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.editor-header {
+  padding: 16px 20px;
+  background: #f8f9fa;
+  border-bottom: 1px solid #e0e0e0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.editor-header h3 {
+  margin: 0;
+  color: #333;
+}
+
+.editor-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.participant-id {
+  font-size: 0.85em;
+  color: #666;
+  font-family: monospace;
+}
+
+.submit-button {
+  padding: 10px 24px;
+  background: #28a745;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.submit-button:hover:not(:disabled) {
+  background: #218838;
+}
+
+.submit-button:disabled {
+  background: #6c757d;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.status-banner {
+  padding: 12px 20px;
+  text-align: center;
+  font-weight: 600;
+}
+
+.status-banner.not-started {
+  background: #fff3cd;
+  color: #856404;
+}
+
+.status-banner.ended {
+  background: #f8d7da;
+  color: #721c24;
+}
+
+.error-banner {
+  padding: 12px 20px;
+  background: #f8d7da;
+  color: #721c24;
+  text-align: center;
+}
+
+.results-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.results-content {
+  background: white;
+  border-radius: 8px;
+  padding: 30px;
+  max-width: 800px;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 32px;
+  cursor: pointer;
+  color: #999;
+  line-height: 1;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+}
+
+.close-button:hover {
+  color: #333;
+}
+
+.results-content h2 {
+  margin: 0 0 20px 0;
+  color: #333;
+}
+
+.result-status {
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  font-size: 1.3em;
+  font-weight: 600;
+  margin: 20px 0;
+}
+
+.result-status.success {
+  background: #d4edda;
+  color: #155724;
+}
+
+.result-status.failure {
+  background: #f8d7da;
+  color: #721c24;
+}
+
+.submission-info {
+  background: #f8f9fa;
+  padding: 16px;
+  border-radius: 4px;
+  margin: 20px 0;
+}
+
+.submission-info div {
+  margin: 8px 0;
+  color: #666;
+}
+
+.syntax-errors,
+.test-results {
+  margin: 24px 0;
+}
+
+.syntax-errors h3,
+.test-results h3 {
+  margin: 0 0 12px 0;
+  color: #333;
+}
+
+.error-item {
+  background: #f8d7da;
+  padding: 12px;
+  border-radius: 4px;
+  margin: 8px 0;
+  color: #721c24;
+  font-family: monospace;
+  font-size: 0.9em;
+}
+
+.test-result {
+  border: 2px solid #e0e0e0;
+  border-radius: 4px;
+  padding: 12px;
+  margin: 12px 0;
+}
+
+.test-result.passed {
+  border-color: #28a745;
+  background: #f0fff4;
+}
+
+.test-result.failed {
+  border-color: #dc3545;
+  background: #fff5f5;
+}
+
+.test-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.execution-time {
+  font-size: 0.85em;
+  color: #666;
+  font-weight: normal;
+}
+
+.test-details {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid #e0e0e0;
+  font-size: 0.9em;
+}
+
+.test-details div {
+  margin: 8px 0;
+  font-family: monospace;
+}
+
+.test-details .error {
+  color: #dc3545;
+  margin-top: 12px;
+}
+
+.close-modal-button {
+  width: 100%;
+  padding: 12px;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 20px;
+}
+
+.close-modal-button:hover {
+  background: #0056b3;
+}
+
+
+/* Success Animation */
+.success-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  animation: fadeIn 0.3s ease;
+}
+
+.success-animation {
+  background: white;
+  padding: 60px;
+  border-radius: 20px;
+  text-align: center;
+  animation: bounceIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.success-checkmark {
+  width: 120px;
+  height: 120px;
+  margin: 0 auto 30px;
+  background: linear-gradient(135deg, #48bb78, #38a169);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 80px;
+  color: white;
+  animation: scaleIn 0.5s ease 0.2s both;
+  box-shadow: 0 10px 40px rgba(72, 187, 120, 0.4);
+}
+
+.success-animation h2 {
+  margin: 0 0 15px 0;
+  color: #2d3748;
+  font-size: 2.5em;
+  animation: slideUp 0.5s ease 0.4s both;
+}
+
+.success-animation p {
+  margin: 0;
+  color: #718096;
+  font-size: 1.2em;
+  animation: slideUp 0.5s ease 0.6s both;
+}
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  70% {
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Confetti Animation */
+.confetti-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1999;
+  overflow: hidden;
+}
+
+.confetti {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  top: -10px;
+  animation: confetti-fall 3s linear infinite;
+}
+
+@keyframes confetti-fall {
+  to {
+    transform: translateY(100vh) rotate(360deg);
+  }
+}
+
+/* Next Challenge Button */
+.next-challenge-button {
+  width: 100%;
+  padding: 15px;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 700;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+}
+
+.next-challenge-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+}
+
+/* Test Case Output */
+.test-output {
+  margin-top: 4px;
+  font-family: monospace;
+  color: #38a169;
+  font-weight: 600;
+}

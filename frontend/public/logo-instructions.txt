@@ -1,0 +1,5 @@
+Please save the two logo images as:
+1. logo-jntu.png (JNTU Technological University logo - left side)
+2. logo-ityukta.png (ITYUKTA 2K26 logo - right side)
+
+Save them in the frontend/public folder so they can be accessed by the website.

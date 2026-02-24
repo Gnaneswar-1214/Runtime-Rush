@@ -1,0 +1,106 @@
+/* Global Styles - Purple + Electric Pink Theme */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+:root {
+  /* Purple + Electric Pink Color Palette */
+  --primary-purple: #8b5cf6;
+  --deep-purple: #7c3aed;
+  --dark-purple: #6d28d9;
+  --electric-pink: #ff0080;
+  --hot-pink: #ff1493;
+  --neon-pink: #ff10f0;
+  
+  /* Background colors */
+  --bg-dark: #0a0a1f;
+  --bg-darker: #050510;
+  --bg-card: rgba(139, 92, 246, 0.08);
+  --bg-card-hover: rgba(139, 92, 246, 0.12);
+  
+  /* Text colors */
+  --text-primary: #ffffff;
+  --text-secondary: #e8f4f8;
+  --text-muted: #b8a3e8;
+  
+  /* Gradient combinations */
+  --gradient-primary: linear-gradient(135deg, #8b5cf6, #ff0080);
+  --gradient-secondary: linear-gradient(135deg, #7c3aed, #ff1493);
+  --gradient-accent: linear-gradient(135deg, #6d28d9, #ff10f0);
+  --gradient-bg: linear-gradient(135deg, #0a0a1f 0%, #1a1a3e 50%, #0f1729 100%);
+  
+  /* Shadows */
+  --shadow-purple: 0 8px 32px rgba(139, 92, 246, 0.3);
+  --shadow-pink: 0 8px 32px rgba(255, 0, 128, 0.3);
+  --shadow-glow: 0 0 40px rgba(139, 92, 246, 0.5);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: var(--gradient-bg);
+  color: var(--text-primary);
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at 20% 50%, rgba(139, 92, 246, 0.12) 0%, transparent 50%),
+              radial-gradient(circle at 80% 80%, rgba(255, 0, 128, 0.12) 0%, transparent 50%);
+  animation: backgroundPulse 15s ease-in-out infinite;
+  z-index: -1;
+}
+
+@keyframes backgroundPulse {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-5%, -5%) scale(1.1); }
+}
+
+code, pre {
+  font-family: 'JetBrains Mono', source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(10, 10, 31, 0.5);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--gradient-primary);
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gradient-secondary);
+}
+
+/* Selection styling */
+::selection {
+  background: var(--electric-pink);
+  color: #0a0a1f;
+}
+
+::-moz-selection {
+  background: var(--electric-pink);
+  color: #0a0a1f;
+}

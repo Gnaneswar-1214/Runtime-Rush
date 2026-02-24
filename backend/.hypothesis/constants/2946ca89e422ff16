@@ -1,0 +1,4 @@
+# file: D:\RuntimeRush\backend\app\managers\session_manager.py
+# hypothesis_version: 6.151.9
+
+['challenge_id', 'current_code', 'last_saved', 'participant_id']

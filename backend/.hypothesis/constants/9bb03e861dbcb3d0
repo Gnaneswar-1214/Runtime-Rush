@@ -1,0 +1,4 @@
+# file: D:\RuntimeRush\backend\app\models\challenge.py
+# hypothesis_version: 6.151.9
+
+[255, 'CASCADE', 'Challenge', 'CodeFragment', 'ParticipantSession', 'Submission', 'TestCase', 'User', 'Winner', 'all, delete-orphan', 'challenge', 'challenges', 'challenges.id', 'code_fragments', 'created_challenges', 'fragments', 'test_cases', 'users.id']

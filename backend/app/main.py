@@ -1,0 +1,23 @@
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+from app.routers import challenges_sqlite, auth, admin
+
+app = FastAPI(title="Runtime Rush API", version="1.0.0")
+
+# CORS configuration
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:3000"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+# Include routers
+app.include_router(challenges_sqlite.router)
+app.include_router(auth.router)
+app.include_router(admin.router)
+
+@app.get("/health")
+async def health_check():
+    return {"status": "healthy"}

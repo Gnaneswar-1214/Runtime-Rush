@@ -1,0 +1,4 @@
+# file: D:\RuntimeRush\backend\app\config.py
+# hypothesis_version: 6.151.9
+
+['.env', 'dev-secret-key', 'development']
