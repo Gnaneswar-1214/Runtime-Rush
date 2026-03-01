@@ -4,10 +4,16 @@ from app.routers import challenges_sqlite, auth, admin
 
 app = FastAPI(title="Runtime Rush API", version="1.0.0")
 
-# CORS configuration
+# ✅ CORS configuration (ALLOW VERCEL + LOCAL)
+origins = [
+    "http://localhost:3000",                 # local development
+    "https://runtime-rush.vercel.app",       # your frontend (change if different)
+    "https://*.vercel.app",                  # allow preview deployments
+]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],
+    allow_origins=["*"],  # 🔥 TEMP: allow all to confirm fix
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
