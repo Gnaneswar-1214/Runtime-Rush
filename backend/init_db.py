@@ -1,57 +1,38 @@
-from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware
-from app.routers import challenges_sqlite, auth, admin
+"""
+Initialize database with admin user and challenges for Railway deployment
+Run this ONCE after deploying to Railway
+"""
+import sys
+import os
 
-# ✅ IMPORT DB
-from app.database import Base, engine
+# Add the parent directory to the path
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-app = FastAPI(title="Runtime Rush API", version="1.0.0")
+from app.database import SessionLocal, engine, Base
+from app.models_sqlite import User, Challenge, CodeFragment, UserProgress
+import uuid
+import hashlib
+from datetime import datetime, timedelta
 
-# ✅ CREATE TABLES ON STARTUP (CRITICAL FOR RAILWAY)
-Base.metadata.create_all(bind=engine)
+def hash_password(password: str) -> str:
+    return hashlib.sha256(password.encode()).hexdigest()
 
-# ✅ Allowed origins - Allow all origins for deployment flexibility
-# In production, you should restrict this to your specific domains
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],  # Allow all origins (change to specific domains in production)
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
-
-# Routers
-app.include_router(challenges_sqlite.router)
-app.include_router(auth.router)
-app.include_router(admin.router)
-
-@app.get("/health")
-async def health_check():
-    return {"status": "healthy"}
-
-
-@app.post("/initialize-db")
-async def initialize_database():
-    """
-    Initialize database with admin user and challenges
-    Call this endpoint ONCE after deployment to set up the database
-    """
-    from app.database import SessionLocal
-    from app.models_sqlite import User, Challenge, CodeFragment
-    import uuid
-    import hashlib
-    from datetime import datetime, timedelta
+def init_database():
+    print("🚀 Initializing database...")
     
-    def hash_password(password: str) -> str:
-        return hashlib.sha256(password.encode()).hexdigest()
+    # Create all tables
+    Base.metadata.create_all(bind=engine)
+    print("✅ Tables created")
     
     db = SessionLocal()
-    results = {"admin_created": False, "challenges_created": 0, "errors": []}
     
     try:
-        # Create admin if doesn't exist
+        # Check if admin already exists
         existing_admin = db.query(User).filter(User.username == "admin").first()
-        if not existing_admin:
+        if existing_admin:
+            print("⚠️ Admin user already exists")
+        else:
+            # Create admin user
             admin_id = str(uuid.uuid4())
             admin_user = User(
                 id=admin_id,
@@ -62,13 +43,14 @@ async def initialize_database():
             )
             db.add(admin_user)
             db.commit()
-            results["admin_created"] = True
-        else:
-            admin_id = existing_admin.id
+            print("✅ Admin user created (username: admin, password: admin123)")
         
-        # Create challenges if don't exist
-        existing_count = db.query(Challenge).count()
-        if existing_count == 0:
+        # Check if challenges already exist
+        existing_challenges = db.query(Challenge).count()
+        if existing_challenges > 0:
+            print(f"⚠️ {existing_challenges} challenges already exist")
+        else:
+            # Create challenges for each level
             challenges_data = [
                 {
                     "title": "Binary Search Algorithm",
@@ -147,10 +129,11 @@ async def initialize_database():
                     correct_solution="\n".join(challenge_data["fragments"]),
                     start_time=datetime.now(),
                     end_time=datetime.now() + timedelta(days=365),
-                    created_by=admin_id
+                    created_by=admin_id if 'admin_id' in locals() else str(uuid.uuid4())
                 )
                 db.add(challenge)
                 
+                # Add fragments
                 for idx, fragment_content in enumerate(challenge_data["fragments"]):
                     fragment = CodeFragment(
                         id=str(uuid.uuid4()),
@@ -161,21 +144,18 @@ async def initialize_database():
                     db.add(fragment)
                 
                 db.commit()
-                results["challenges_created"] += 1
+                print(f"✅ Created challenge: {challenge_data['title']} (Level {challenge_data['level']})")
         
-        return {
-            "success": True,
-            "message": "Database initialized successfully",
-            "details": results
-        }
+        print("\n🎉 Database initialization complete!")
+        print("\n📝 Admin credentials:")
+        print("   Username: admin")
+        print("   Password: admin123")
         
     except Exception as e:
-        results["errors"].append(str(e))
+        print(f"❌ Error: {e}")
         db.rollback()
-        return {
-            "success": False,
-            "message": "Database initialization failed",
-            "details": results
-        }
     finally:
         db.close()
+
+if __name__ == "__main__":
+    init_database()
