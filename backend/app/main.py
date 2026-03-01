@@ -4,6 +4,7 @@ from app.routers import challenges_sqlite, auth, admin
 
 app = FastAPI(title="Runtime Rush API", version="1.0.0")
 
+# ✅ CORS — allow Vercel + local
 origins = [
     "http://localhost:3000",
     "https://runtime-rush.vercel.app",
@@ -11,13 +12,13 @@ origins = [
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
+    allow_origins=origins,      # allowed domains
     allow_credentials=True,
-    allow_methods=["*"],
+    allow_methods=["*"],        # ✅ MUST include OPTIONS
     allow_headers=["*"],
 )
 
-# ✅ DO NOT add prefix here
+# ✅ Include routers WITHOUT duplicate prefixes
 app.include_router(challenges_sqlite.router)
 app.include_router(auth.router)
 app.include_router(admin.router)
