@@ -4,29 +4,22 @@ from app.routers import challenges_sqlite, auth, admin
 
 app = FastAPI(title="Runtime Rush API", version="1.0.0")
 
-# ✅ Allow frontend domains
-origins = [
-    "http://localhost:3000",
-    "https://runtime-rush.vercel.app",
-]
-
+# ✅ CORS configuration (IMPORTANT)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
+    allow_origins=[
+        "http://localhost:3000",
+        "https://runtime-rush.vercel.app",
+    ],
     allow_credentials=True,
-    allow_methods=["*"],      # ← MUST be "*"
-    allow_headers=["*"],      # ← MUST be "*"
-    expose_headers=["*"],     # ← important for some browsers
+    allow_methods=["*"],   # ✅ MUST be "*"
+    allow_headers=["*"],   # ✅ MUST be "*"
 )
 
-# Routers
-app.include_router(challenges_sqlite.router)
-app.include_router(auth.router)
-app.include_router(admin.router)
-
-@app.get("/")
-async def root():
-    return {"message": "Runtime Rush API running"}
+# ✅ Include routers
+app.include_router(challenges_sqlite.router, prefix="/api")
+app.include_router(auth.router, prefix="/api")
+app.include_router(admin.router, prefix="/api")
 
 @app.get("/health")
 async def health_check():
