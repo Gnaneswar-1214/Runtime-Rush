@@ -50,13 +50,13 @@ async def initialize_database():
     
     try:
         # Create admin if doesn't exist
-        existing_admin = db.query(User).filter(User.username == "mouni").first()
+        existing_admin = db.query(User).filter(User.username == "mouniadmin").first()
         if not existing_admin:
             admin_id = str(uuid.uuid4())
             admin_user = User(
                 id=admin_id,
-                username="mouni",
-                email="mouni@runtimerush.com",
+                username="mouniadmin",
+                email="mouniadmin@runtimerush.com",
                 password_hash=hash_password("1214@"),
                 role='admin'
             )

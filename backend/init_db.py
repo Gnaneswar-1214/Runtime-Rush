@@ -28,7 +28,7 @@ def init_database():
     
     try:
         # Check if admin already exists
-        existing_admin = db.query(User).filter(User.username == "mouni").first()
+        existing_admin = db.query(User).filter(User.username == "mouniadmin").first()
         if existing_admin:
             print("⚠️ Admin user already exists")
         else:
@@ -36,14 +36,14 @@ def init_database():
             admin_id = str(uuid.uuid4())
             admin_user = User(
                 id=admin_id,
-                username="mouni",
-                email="mouni@runtimerush.com",
+                username="mouniadmin",
+                email="mouniadmin@runtimerush.com",
                 password_hash=hash_password("1214@"),
                 role='admin'
             )
             db.add(admin_user)
             db.commit()
-            print("✅ Admin user created (username: mouni, password: 1214@)")
+            print("✅ Admin user created (username: mouniadmin, password: 1214@)")
         
         # Check if challenges already exist
         existing_challenges = db.query(Challenge).count()
@@ -123,7 +123,7 @@ def init_database():
         
         print("\n🎉 Database initialization complete!")
         print("\n📝 Admin credentials:")
-        print("   Username: mouni")
+        print("   Username: mouniadmin")
         print("   Password: 1214@")
         
     except Exception as e:

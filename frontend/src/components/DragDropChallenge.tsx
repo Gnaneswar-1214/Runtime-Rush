@@ -141,9 +141,16 @@ const DragDropChallenge: React.FC<DragDropChallengeProps> = ({ challenge, user, 
       // Clear session data
       sessionStorage.removeItem(sessionKey);
       
-      // Show time up message and go back
-      alert('Time is up! Level completed with 0 marks.');
-      onComplete();
+      // Store the earned score (0)
+      setEarnedScore(0);
+      
+      // Show success overlay with 0 marks
+      setShowSuccess(true);
+      
+      // Auto-close after 3 seconds
+      setTimeout(() => {
+        onComplete();
+      }, 3000);
     } catch (err) {
       console.error('Failed to complete level:', err);
       alert('Time is up!');
