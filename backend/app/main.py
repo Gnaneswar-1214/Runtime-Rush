@@ -1,10 +1,10 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Request, Response
 from fastapi.middleware.cors import CORSMiddleware
 from app.routers import challenges_sqlite, auth, admin
 
 app = FastAPI(title="Runtime Rush API", version="1.0.0")
 
-# ✅ CORS — allow Vercel + local
+# ✅ CORS configuration
 origins = [
     "http://localhost:3000",
     "https://runtime-rush.vercel.app",
@@ -12,13 +12,18 @@ origins = [
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,      # allowed domains
+    allow_origins=origins,
     allow_credentials=True,
-    allow_methods=["*"],        # ✅ MUST include OPTIONS
+    allow_methods=["*"],
     allow_headers=["*"],
 )
 
-# ✅ Include routers WITHOUT duplicate prefixes
+# ✅ FORCE handle OPTIONS (fixes 405 permanently)
+@app.options("/{full_path:path}")
+async def preflight_handler(full_path: str, request: Request):
+    return Response(status_code=200)
+
+# Routers
 app.include_router(challenges_sqlite.router)
 app.include_router(auth.router)
 app.include_router(admin.router)
