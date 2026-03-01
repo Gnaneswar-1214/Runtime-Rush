@@ -50,14 +50,14 @@ async def initialize_database():
     
     try:
         # Create admin if doesn't exist
-        existing_admin = db.query(User).filter(User.username == "admin").first()
+        existing_admin = db.query(User).filter(User.username == "mouni").first()
         if not existing_admin:
             admin_id = str(uuid.uuid4())
             admin_user = User(
                 id=admin_id,
-                username="admin",
-                email="admin@runtimerush.com",
-                password_hash=hash_password("admin123"),
+                username="mouni",
+                email="mouni@runtimerush.com",
+                password_hash=hash_password("1214@"),
                 role='admin'
             )
             db.add(admin_user)
@@ -76,17 +76,11 @@ async def initialize_database():
                     "language": "python",
                     "level": 1,
                     "fragments": [
-                        "def binary_search(arr, target):",
-                        "    left, right = 0, len(arr) - 1",
-                        "    while left <= right:",
-                        "        mid = (left + right) // 2",
-                        "        if arr[mid] == target:",
-                        "            return mid",
-                        "        elif arr[mid] < target:",
-                        "            left = mid + 1",
-                        "        else:",
-                        "            right = mid - 1",
-                        "    return -1"
+                        "def binary_search(arr, target):\n    left, right = 0, len(arr) - 1",
+                        "    while left <= right:\n        mid = (left + right) // 2",
+                        "        if arr[mid] == target:\n            return mid",
+                        "        elif arr[mid] < target:\n            left = mid + 1",
+                        "        else:\n            right = mid - 1\n    return -1"
                     ]
                 },
                 {
@@ -95,13 +89,10 @@ async def initialize_database():
                     "language": "python",
                     "level": 2,
                     "fragments": [
-                        "def quick_sort(arr):",
-                        "    if len(arr) <= 1:",
-                        "        return arr",
+                        "def quick_sort(arr):\n    if len(arr) <= 1:\n        return arr",
                         "    pivot = arr[len(arr) // 2]",
                         "    left = [x for x in arr if x < pivot]",
-                        "    middle = [x for x in arr if x == pivot]",
-                        "    right = [x for x in arr if x > pivot]",
+                        "    middle = [x for x in arr if x == pivot]\n    right = [x for x in arr if x > pivot]",
                         "    return quick_sort(left) + middle + quick_sort(right)"
                     ]
                 },
@@ -111,27 +102,11 @@ async def initialize_database():
                     "language": "python",
                     "level": 3,
                     "fragments": [
-                        "def merge_sort(arr):",
-                        "    if len(arr) <= 1:",
-                        "        return arr",
-                        "    mid = len(arr) // 2",
-                        "    left = merge_sort(arr[:mid])",
-                        "    right = merge_sort(arr[mid:])",
-                        "    return merge(left, right)",
-                        "",
-                        "def merge(left, right):",
-                        "    result = []",
-                        "    i = j = 0",
-                        "    while i < len(left) and j < len(right):",
-                        "        if left[i] <= right[j]:",
-                        "            result.append(left[i])",
-                        "            i += 1",
-                        "        else:",
-                        "            result.append(right[j])",
-                        "            j += 1",
-                        "    result.extend(left[i:])",
-                        "    result.extend(right[j:])",
-                        "    return result"
+                        "def merge_sort(arr):\n    if len(arr) <= 1:\n        return arr",
+                        "    mid = len(arr) // 2\n    left = merge_sort(arr[:mid])\n    right = merge_sort(arr[mid:])",
+                        "    return merge(left, right)\n\ndef merge(left, right):\n    result = []",
+                        "    i = j = 0\n    while i < len(left) and j < len(right):",
+                        "        if left[i] <= right[j]:\n            result.append(left[i])\n            i += 1\n        else:\n            result.append(right[j])\n            j += 1\n    result.extend(left[i:])\n    result.extend(right[j:])\n    return result"
                     ]
                 }
             ]
