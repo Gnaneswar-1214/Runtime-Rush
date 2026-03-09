@@ -845,3 +845,229 @@
   0%, 100% { transform: translateY(0) scale(1); }
   50% { transform: translateY(-20px) scale(1.1); }
 }
+
+
+/* Language Selector Modal */
+.language-selector-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease;
+}
+
+.language-selector-modal {
+  background: linear-gradient(135deg, rgba(30, 41, 59, 0.98), rgba(15, 23, 42, 0.98));
+  backdrop-filter: blur(30px);
+  padding: 50px 60px;
+  border-radius: 28px;
+  text-align: center;
+  animation: modalSlideUp 0.5s ease;
+  border: 3px solid rgba(139, 92, 246, 0.5);
+  box-shadow: 0 30px 90px rgba(139, 92, 246, 0.6),
+              0 0 120px rgba(255, 0, 128, 0.4);
+  max-width: 700px;
+  width: 90%;
+}
+
+@keyframes modalSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.language-selector-modal h2 {
+  margin: 0 0 20px 0;
+  font-size: 36px;
+  font-weight: 900;
+  background: linear-gradient(135deg, #8b5cf6, #ff0080, #ff10f0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: titleShimmer 3s ease-in-out infinite;
+}
+
+.language-selector-modal p {
+  margin: 0 0 40px 0;
+  color: #e2e8f0;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.6;
+}
+
+.language-options {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.language-option {
+  padding: 30px 20px;
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(255, 0, 128, 0.1));
+  border: 3px solid rgba(139, 92, 246, 0.4);
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  position: relative;
+  overflow: hidden;
+}
+
+.language-option::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.6s ease;
+}
+
+.language-option:hover::before {
+  left: 100%;
+}
+
+.language-option:hover {
+  border-color: #ff0080;
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.3), rgba(255, 0, 128, 0.25));
+  transform: translateY(-8px) scale(1.05);
+  box-shadow: 0 20px 60px rgba(139, 92, 246, 0.6),
+              0 0 80px rgba(255, 0, 128, 0.5);
+}
+
+.language-icon {
+  font-size: 60px;
+  animation: iconFloat 3s ease-in-out infinite;
+}
+
+@keyframes iconFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.language-name {
+  font-size: 24px;
+  font-weight: 800;
+  color: #e2e8f0;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+.cancel-btn {
+  padding: 16px 48px;
+  background: rgba(51, 65, 85, 0.8);
+  border: 2px solid rgba(100, 116, 139, 0.5);
+  border-radius: 14px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  color: #e2e8f0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.cancel-btn:hover {
+  background: rgba(51, 65, 85, 0.95);
+  border-color: #8b5cf6;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(139, 92, 246, 0.4);
+}
+
+/* Selected Language Badge */
+.selected-language-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  padding: 20px 40px;
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(255, 0, 128, 0.15));
+  border: 3px solid rgba(139, 92, 246, 0.5);
+  border-radius: 20px;
+  margin-bottom: 30px;
+  animation: badgeGlow 3s ease-in-out infinite;
+}
+
+@keyframes badgeGlow {
+  0%, 100% { 
+    box-shadow: 0 8px 30px rgba(139, 92, 246, 0.4);
+  }
+  50% { 
+    box-shadow: 0 12px 40px rgba(255, 0, 128, 0.6),
+                0 0 60px rgba(139, 92, 246, 0.4);
+  }
+}
+
+.badge-label {
+  font-size: 18px;
+  font-weight: 700;
+  color: #cbd5e1;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.badge-value {
+  font-size: 24px;
+  font-weight: 900;
+  background: linear-gradient(135deg, #8b5cf6, #ff0080);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: 2px;
+}
+
+@media (max-width: 768px) {
+  .language-selector-modal {
+    padding: 40px 30px;
+  }
+
+  .language-selector-modal h2 {
+    font-size: 28px;
+  }
+
+  .language-options {
+    grid-template-columns: 1fr;
+  }
+
+  .language-option {
+    padding: 25px 15px;
+  }
+
+  .language-icon {
+    font-size: 50px;
+  }
+
+  .language-name {
+    font-size: 20px;
+  }
+
+  .selected-language-badge {
+    flex-direction: column;
+    gap: 10px;
+    padding: 15px 25px;
+  }
+
+  .badge-label {
+    font-size: 16px;
+  }
+
+  .badge-value {
+    font-size: 20px;
+  }
+}

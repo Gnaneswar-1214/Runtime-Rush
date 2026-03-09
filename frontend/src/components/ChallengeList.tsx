@@ -15,6 +15,8 @@ const ChallengeList: React.FC<ChallengeListProps> = ({ onSelectChallenge, user }
   const [selectedLevel, setSelectedLevel] = useState(user.current_level);
   const [userProgress, setUserProgress] = useState<UserProgress | null>(null);
   const [showLeaderboard, setShowLeaderboard] = useState(false);
+  const [showLanguageSelector, setShowLanguageSelector] = useState(false);
+  const [selectedLanguage, setSelectedLanguage] = useState<string>('');
 
   console.log('ChallengeList rendered with user:', user);
   console.log('Selected level:', selectedLevel);
@@ -29,6 +31,17 @@ const ChallengeList: React.FC<ChallengeListProps> = ({ onSelectChallenge, user }
       const progress = await apiClient.getUserProgress(user.id);
       setUserProgress(progress);
       console.log('User progress:', progress);
+      
+      // Check if language is already selected for current level
+      if (selectedLevel === 1 && progress.level1_language) {
+        setSelectedLanguage(progress.level1_language);
+      } else if (selectedLevel === 2 && progress.level2_language) {
+        setSelectedLanguage(progress.level2_language);
+      } else if (selectedLevel === 3 && progress.level3_language) {
+        setSelectedLanguage(progress.level3_language);
+      } else {
+        setSelectedLanguage('');
+      }
     } catch (err) {
       console.error('Failed to load user progress:', err);
     }
@@ -45,7 +58,14 @@ const ChallengeList: React.FC<ChallengeListProps> = ({ onSelectChallenge, user }
         return c.level === selectedLevel;
       });
       console.log('Filtered challenges:', filteredData);
-      setChallenges(filteredData);
+      
+      // If language is selected, filter by language
+      if (selectedLanguage) {
+        const languageFiltered = filteredData.filter((c: any) => c.language === selectedLanguage);
+        setChallenges(languageFiltered);
+      } else {
+        setChallenges(filteredData);
+      }
       setError(null);
     } catch (err) {
       setError('Failed to load challenges. Make sure the backend is running.');
@@ -53,6 +73,33 @@ const ChallengeList: React.FC<ChallengeListProps> = ({ onSelectChallenge, user }
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleLanguageSelect = async (language: string) => {
+    try {
+      await apiClient.selectLanguage(user.id, selectedLevel, language);
+      setSelectedLanguage(language);
+      setShowLanguageSelector(false);
+      loadUserProgress();
+      loadChallenges();
+    } catch (err: any) {
+      alert(err.message || 'Failed to select language');
+    }
+  };
+
+  const handleStartChallenge = (challenge: Challenge) => {
+    // Check if language is selected
+    const languageSelected = 
+      (selectedLevel === 1 && userProgress?.level1_language) ||
+      (selectedLevel === 2 && userProgress?.level2_language) ||
+      (selectedLevel === 3 && userProgress?.level3_language);
+    
+    if (!languageSelected) {
+      setShowLanguageSelector(true);
+      return;
+    }
+    
+    onSelectChallenge(challenge);
   };
 
   const getChallengeStatus = (challenge: Challenge): string => {
@@ -117,6 +164,34 @@ const ChallengeList: React.FC<ChallengeListProps> = ({ onSelectChallenge, user }
 
   return (
     <div className="challenge-list">
+      {showLanguageSelector && (
+        <div className="language-selector-overlay">
+          <div className="language-selector-modal">
+            <h2>Select Programming Language</h2>
+            <p>Choose a language for Level {selectedLevel}. You cannot change it later!</p>
+            <div className="language-options">
+              <button className="language-option" onClick={() => handleLanguageSelect('python')}>
+                <span className="language-icon">🐍</span>
+                <span className="language-name">Python</span>
+              </button>
+              <button className="language-option" onClick={() => handleLanguageSelect('c')}>
+                <span className="language-icon">©️</span>
+                <span className="language-name">C</span>
+              </button>
+              <button className="language-option" onClick={() => handleLanguageSelect('java')}>
+                <span className="language-icon">☕</span>
+                <span className="language-name">Java</span>
+              </button>
+              <button className="language-option" onClick={() => handleLanguageSelect('cpp')}>
+                <span className="language-icon">⚡</span>
+                <span className="language-name">C++</span>
+              </button>
+            </div>
+            <button className="cancel-btn" onClick={() => setShowLanguageSelector(false)}>Cancel</button>
+          </div>
+        </div>
+      )}
+
       <div className="challenge-list-header">
         <h2>Available Challenges</h2>
         <div className="header-actions">
@@ -151,6 +226,13 @@ const ChallengeList: React.FC<ChallengeListProps> = ({ onSelectChallenge, user }
           )}
         </div>
       </div>
+
+      {selectedLanguage && (
+        <div className="selected-language-badge">
+          <span className="badge-label">Selected Language:</span>
+          <span className="badge-value">{selectedLanguage.toUpperCase()}</span>
+        </div>
+      )}
 
       {allLevelsCompleted && (
         <div className="thank-you-banner">
@@ -197,10 +279,10 @@ const ChallengeList: React.FC<ChallengeListProps> = ({ onSelectChallenge, user }
               </div>
               <button 
                 className="start-button"
-                onClick={() => !isCompleted && onSelectChallenge(challenge)}
+                onClick={() => !isCompleted && handleStartChallenge(challenge)}
                 disabled={isCompleted}
               >
-                {isCompleted ? 'Already Completed' : 'Start Challenge →'}
+                {isCompleted ? 'Already Completed' : selectedLanguage ? 'Start Challenge →' : 'Select Language First'}
               </button>
             </div>
           );

@@ -83,6 +83,9 @@ export interface UserProgress {
   level1_completed: boolean;
   level2_completed: boolean;
   level3_completed: boolean;
+  level1_language?: string;
+  level2_language?: string;
+  level3_language?: string;
   total_score: number;
 }
 
@@ -276,6 +279,18 @@ class ApiClient {
   async getLeaderboard(): Promise<any> {
     const response = await fetch(`${this.baseUrl}/api/auth/leaderboard`);
     if (!response.ok) throw new Error("Failed to fetch leaderboard");
+    return response.json();
+  }
+
+  async selectLanguage(userId: string, level: number, language: string): Promise<any> {
+    const response = await fetch(
+      `${this.baseUrl}/api/auth/users/${userId}/select-language/${level}?language=${language}`,
+      { method: "POST" }
+    );
+    if (!response.ok) {
+      const error = await response.json();
+      throw new Error(error.detail || "Failed to select language");
+    }
     return response.json();
   }
 }

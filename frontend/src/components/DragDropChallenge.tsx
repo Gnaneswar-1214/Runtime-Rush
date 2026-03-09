@@ -342,11 +342,11 @@ const DragDropChallenge: React.FC<DragDropChallengeProps> = ({ challenge, user, 
                 <span className="timer-label">seconds</span>
               </div>
             </div>
-            <div className="preview-code">
+            <div className="preview-code-grid">
               {challenge.fragments
                 ?.sort((a, b) => a.order - b.order)
                 .map((fragment, index) => (
-                  <div key={fragment.id} className="preview-fragment">
+                  <div key={fragment.id} className="preview-fragment-card">
                     <span className="fragment-number">{index + 1}</span>
                     <pre>{fragment.content}</pre>
                   </div>
