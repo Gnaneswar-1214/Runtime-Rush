@@ -3,13 +3,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
 
 :root {
-  /* Purple + Electric Pink Color Palette */
+  /* Purple + Cyan/Blue Color Palette */
   --primary-purple: #8b5cf6;
   --deep-purple: #7c3aed;
   --dark-purple: #6d28d9;
-  --electric-pink: #ff0080;
-  --hot-pink: #ff1493;
-  --neon-pink: #ff10f0;
+  --electric-cyan: #00d9ff;
+  --bright-cyan: #00f0ff;
+  --neon-blue: #0099ff;
   
   /* Background colors */
   --bg-dark: #0a0a1f;
@@ -23,14 +23,14 @@
   --text-muted: #b8a3e8;
   
   /* Gradient combinations */
-  --gradient-primary: linear-gradient(135deg, #8b5cf6, #ff0080);
-  --gradient-secondary: linear-gradient(135deg, #7c3aed, #ff1493);
-  --gradient-accent: linear-gradient(135deg, #6d28d9, #ff10f0);
+  --gradient-primary: linear-gradient(135deg, #8b5cf6, #00d9ff);
+  --gradient-secondary: linear-gradient(135deg, #7c3aed, #00f0ff);
+  --gradient-accent: linear-gradient(135deg, #6d28d9, #0099ff);
   --gradient-bg: linear-gradient(135deg, #0a0a1f 0%, #1a1a3e 50%, #0f1729 100%);
   
   /* Shadows */
   --shadow-purple: 0 8px 32px rgba(139, 92, 246, 0.3);
-  --shadow-pink: 0 8px 32px rgba(255, 0, 128, 0.3);
+  --shadow-cyan: 0 8px 32px rgba(0, 217, 255, 0.3);
   --shadow-glow: 0 0 40px rgba(139, 92, 246, 0.5);
 }
 
@@ -61,7 +61,7 @@ body::before {
   width: 200%;
   height: 200%;
   background: radial-gradient(circle at 20% 50%, rgba(139, 92, 246, 0.12) 0%, transparent 50%),
-              radial-gradient(circle at 80% 80%, rgba(255, 0, 128, 0.12) 0%, transparent 50%);
+              radial-gradient(circle at 80% 80%, rgba(0, 217, 255, 0.12) 0%, transparent 50%);
   animation: backgroundPulse 15s ease-in-out infinite;
   z-index: -1;
 }
@@ -96,11 +96,11 @@ code, pre {
 
 /* Selection styling */
 ::selection {
-  background: var(--electric-pink);
+  background: var(--electric-cyan);
   color: #0a0a1f;
 }
 
 ::-moz-selection {
-  background: var(--electric-pink);
+  background: var(--electric-cyan);
   color: #0a0a1f;
 }

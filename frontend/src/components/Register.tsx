@@ -49,12 +49,12 @@ const Register: React.FC<RegisterProps> = ({ onRegister, onSwitchToLogin }) => {
           <img src="/logo-ityukta.png" alt="ITYUKTA 2K26 Logo" className="auth-logo" />
         </div>
         
-        <h2>⚡ Join Runtime Rush</h2>
-        <p className="auth-subtitle">Create your account to get started</p>
+        <h2>🎉 Join Runtime Rush</h2>
+        <p className="auth-subtitle">✨ Create your account to get started</p>
         
         <form className="auth-form" onSubmit={handleSubmit}>
           <div className="form-group">
-            <label>Username</label>
+            <label>👤 Username</label>
             <input
               type="text"
               value={username}
@@ -65,7 +65,7 @@ const Register: React.FC<RegisterProps> = ({ onRegister, onSwitchToLogin }) => {
             />
           </div>
           <div className="form-group">
-            <label>Email</label>
+            <label>📧 Email</label>
             <input
               type="email"
               value={email}
@@ -76,7 +76,7 @@ const Register: React.FC<RegisterProps> = ({ onRegister, onSwitchToLogin }) => {
             />
           </div>
           <div className="form-group">
-            <label>Password</label>
+            <label>🔑 Password</label>
             <input
               type="password"
               value={password}
@@ -87,7 +87,7 @@ const Register: React.FC<RegisterProps> = ({ onRegister, onSwitchToLogin }) => {
             />
           </div>
           <div className="form-group">
-            <label>Confirm Password</label>
+            <label>🔐 Confirm Password</label>
             <input
               type="password"
               value={confirmPassword}
@@ -97,14 +97,14 @@ const Register: React.FC<RegisterProps> = ({ onRegister, onSwitchToLogin }) => {
               disabled={loading}
             />
           </div>
-          {error && <div className="error-message">{error}</div>}
+          {error && <div className="error-message">❌ {error}</div>}
           <button type="submit" className="submit-button" disabled={loading}>
-            {loading ? 'Creating account...' : 'Register'}
+            {loading ? '⏳ Creating account...' : '🚀 Register'}
           </button>
         </form>
         <div className="switch-auth">
           Already have an account?
-          <button onClick={onSwitchToLogin}>Login here</button>
+          <button onClick={onSwitchToLogin}>🔐 Login here</button>
         </div>
       </div>
     </div>

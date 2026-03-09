@@ -152,8 +152,8 @@ const AdminDashboard: React.FC<AdminDashboardProps> = ({ user, onLogout, onAddCh
         <div className="admin-header-content">
           <h1>⚡ Admin Dashboard</h1>
           <div className="admin-user-info">
-            <span>Welcome, {user.username}</span>
-            <button onClick={onLogout} className="logout-btn">Logout</button>
+            <span>👋 Welcome, {user.username}</span>
+            <button onClick={onLogout} className="logout-btn">🚪 Logout</button>
           </div>
         </div>
         

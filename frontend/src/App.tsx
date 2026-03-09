@@ -99,11 +99,11 @@ function App() {
     <div className="App">
       {!selectedChallenge ? (
         <>
-          <Header title="⚡ Runtime Rush" subtitle="Competitive Coding Challenge Platform">
+          <Header title="⚡ Runtime Rush" subtitle="🚀 Competitive Coding Challenge Platform">
             <div className="user-info">
-              <span className="welcome-text">Welcome, {user.username}!</span>
-              <span className="level-badge">Level {user.current_level}</span>
-              <button onClick={handleLogout} className="logout-btn">Logout</button>
+              <span className="welcome-text">👋 Welcome, {user.username}!</span>
+              <span className="level-badge">🎯 Level {user.current_level}</span>
+              <button onClick={handleLogout} className="logout-btn">🚪 Logout</button>
             </div>
           </Header>
           <ChallengeList onSelectChallenge={setSelectedChallenge} user={user} />

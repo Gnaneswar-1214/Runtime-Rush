@@ -90,14 +90,14 @@ const ChallengeList: React.FC<ChallengeListProps> = ({ onSelectChallenge, user }
   };
 
   if (loading) {
-    return <div className="challenge-list loading">Loading challenges...</div>;
+    return <div className="challenge-list loading">⏳ Loading challenges...</div>;
   }
 
   if (error) {
     return (
       <div className="challenge-list error">
-        <p>{error}</p>
-        <button onClick={loadChallenges}>Retry</button>
+        <p>❌ {error}</p>
+        <button onClick={loadChallenges}>🔄 Retry</button>
       </div>
     );
   }
@@ -105,8 +105,8 @@ const ChallengeList: React.FC<ChallengeListProps> = ({ onSelectChallenge, user }
   if (challenges.length === 0) {
     return (
       <div className="challenge-list empty">
-        <p>No challenges available yet.</p>
-        <p className="hint">Create a challenge using the API at http://127.0.0.1:8000/docs</p>
+        <p>🎯 No challenges available yet.</p>
+        <p className="hint">💡 Create a challenge using the API at http://127.0.0.1:8000/docs</p>
       </div>
     );
   }
@@ -134,7 +134,7 @@ const ChallengeList: React.FC<ChallengeListProps> = ({ onSelectChallenge, user }
   return (
     <div className="challenge-list">
       <div className="challenge-list-header">
-        <h2>Available Challenges</h2>
+        <h2>🎯 Available Challenges</h2>
         <div className="header-actions">
           <div className="level-selector">
             <button
@@ -142,21 +142,21 @@ const ChallengeList: React.FC<ChallengeListProps> = ({ onSelectChallenge, user }
               onClick={() => setSelectedLevel(1)}
               disabled={user.current_level < 1}
             >
-              Level 1 {user.current_level < 1 && '🔒'}
+              🥉 Level 1 {user.current_level < 1 && '🔒'}
             </button>
             <button
               className={`level-btn ${selectedLevel === 2 ? 'active' : ''} ${user.current_level < 2 ? 'locked' : ''}`}
               onClick={() => setSelectedLevel(2)}
               disabled={user.current_level < 2}
             >
-              Level 2 {user.current_level < 2 && '🔒'}
+              🥈 Level 2 {user.current_level < 2 && '🔒'}
             </button>
             <button
               className={`level-btn ${selectedLevel === 3 ? 'active' : ''} ${user.current_level < 3 ? 'locked' : ''}`}
               onClick={() => setSelectedLevel(3)}
               disabled={user.current_level < 3}
             >
-              Level 3 {user.current_level < 3 && '🔒'}
+              🥇 Level 3 {user.current_level < 3 && '🔒'}
             </button>
           </div>
           {allLevelsCompleted && (
@@ -172,9 +172,9 @@ const ChallengeList: React.FC<ChallengeListProps> = ({ onSelectChallenge, user }
         <div className="thank-you-banner">
           <div className="thank-you-content">
             <div className="thank-you-icon">🎉</div>
-            <h2 className="thank-you-title">Thank You for Participating!</h2>
-            <p className="thank-you-message">The results will be declared soon.</p>
-            <p className="thank-you-prize">You have a chance to win exciting prizes! 🎁</p>
+            <h2 className="thank-you-title">🌟 Thank You for Participating! 🌟</h2>
+            <p className="thank-you-message">📢 The results will be declared soon.</p>
+            <p className="thank-you-prize">🎁 You have a chance to win exciting prizes! 🏅</p>
           </div>
         </div>
       )}
@@ -241,8 +241,11 @@ const ChallengeCard: React.FC<ChallengeCardProps> = ({
     ? groupChallenges.find((c: any) => c.language === levelLanguage) || firstChallenge
     : firstChallenge;
 
-  const [tempLanguage, setTempLanguage] = useState(levelLanguage || 'python');
-  const tempChallenge = groupChallenges.find((c: any) => c.language === tempLanguage) || firstChallenge;
+  // Don't default to any language - user must select
+  const [tempLanguage, setTempLanguage] = useState<string | null>(levelLanguage || null);
+  const tempChallenge = tempLanguage 
+    ? groupChallenges.find((c: any) => c.language === tempLanguage) || firstChallenge
+    : firstChallenge;
 
   return (
     <div
@@ -260,7 +263,7 @@ const ChallengeCard: React.FC<ChallengeCardProps> = ({
         
         {!isCompleted && !levelLanguage && (
           <div className="language-selector-inline">
-            <label>Select Language:</label>
+            <label>💻 Select Language:</label>
             <div className="language-buttons">
               <button
                 className={`lang-btn ${tempLanguage === 'python' ? 'active' : ''}`}
@@ -292,23 +295,25 @@ const ChallengeCard: React.FC<ChallengeCardProps> = ({
 
         {levelLanguage && (
           <div className="selected-language-display">
-            <span className="lang-label">Language:</span>
+            <span className="lang-label">💻 Language:</span>
             <span className="lang-value">{levelLanguage.toUpperCase()}</span>
             <span className="lang-locked">🔒 Locked</span>
           </div>
         )}
       </div>
 
-      <p className="challenge-description-new">{tempChallenge.description}</p>
+      <p className="challenge-description-new">
+        {tempLanguage ? tempChallenge.description : '👆 Please select a language above to view the challenge description'}
+      </p>
       
       <div className="challenge-meta-new">
         <div className="meta-item">
           <span className="meta-icon">📦</span>
-          <span>{tempChallenge.fragments?.length || 0} fragments</span>
+          <span>{tempLanguage ? (tempChallenge.fragments?.length || 0) : '?'} fragments</span>
         </div>
         <div className="meta-item">
           <span className="meta-icon">✓</span>
-          <span>{tempChallenge.test_cases?.length || 0} tests</span>
+          <span>{tempLanguage ? (tempChallenge.test_cases?.length || 0) : '?'} tests</span>
         </div>
         <div className="meta-item">
           <span className="meta-icon">⏱️</span>
@@ -321,6 +326,11 @@ const ChallengeCard: React.FC<ChallengeCardProps> = ({
         onClick={async () => {
           if (!isCompleted) {
             if (!levelLanguage) {
+              // Check if user selected a language
+              if (!tempLanguage) {
+                alert('⚠️ Please select a language first!');
+                return;
+              }
               // Save language selection first
               try {
                 await apiClient.selectLanguage(user.id, selectedLevel, tempLanguage);
@@ -338,7 +348,7 @@ const ChallengeCard: React.FC<ChallengeCardProps> = ({
         }}
         disabled={isCompleted}
       >
-        {isCompleted ? '✓ Completed' : 'Start Challenge →'}
+        {isCompleted ? '✅ Completed' : '🚀 Start Challenge →'}
       </button>
     </div>
   );

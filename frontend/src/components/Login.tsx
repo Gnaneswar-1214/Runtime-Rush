@@ -36,12 +36,12 @@ const Login: React.FC<LoginProps> = ({ onLogin, onSwitchToRegister }) => {
           <img src="/logo-ityukta.png" alt="ITYUKTA 2K26 Logo" className="auth-logo" />
         </div>
         
-        <h2>⚡ Login to Runtime Rush</h2>
-        <p className="auth-subtitle">Enter your credentials to continue</p>
+        <h2>🔐 Login to Runtime Rush</h2>
+        <p className="auth-subtitle">👋 Enter your credentials to continue</p>
         
         <form className="auth-form" onSubmit={handleSubmit}>
           <div className="form-group">
-            <label>Username</label>
+            <label>👤 Username</label>
             <input
               type="text"
               value={username}
@@ -52,7 +52,7 @@ const Login: React.FC<LoginProps> = ({ onLogin, onSwitchToRegister }) => {
             />
           </div>
           <div className="form-group">
-            <label>Password</label>
+            <label>🔑 Password</label>
             <input
               type="password"
               value={password}
@@ -62,14 +62,14 @@ const Login: React.FC<LoginProps> = ({ onLogin, onSwitchToRegister }) => {
               disabled={loading}
             />
           </div>
-          {error && <div className="error-message">{error}</div>}
+          {error && <div className="error-message">❌ {error}</div>}
           <button type="submit" className="submit-button" disabled={loading}>
-            {loading ? 'Logging in...' : 'Login'}
+            {loading ? '⏳ Logging in...' : '🚀 Login'}
           </button>
         </form>
         <div className="switch-auth">
           Don't have an account?
-          <button onClick={onSwitchToRegister}>Register here</button>
+          <button onClick={onSwitchToRegister}>📝 Register here</button>
         </div>
       </div>
     </div>

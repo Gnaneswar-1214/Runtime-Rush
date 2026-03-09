@@ -17,7 +17,7 @@
 
 .challenge-list-header h2 {
   margin: 0;
-  background: linear-gradient(135deg, #8b5cf6, #ff0080);
+  background: linear-gradient(135deg, #8b5cf6, #00d9ff);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -84,11 +84,11 @@
 }
 
 .level-selector button.active {
-  background: linear-gradient(135deg, #8b5cf6, #ff0080);
+  background: linear-gradient(135deg, #8b5cf6, #00d9ff);
   color: white;
   border-color: #8b5cf6;
   box-shadow: 0 8px 24px rgba(139, 92, 246, 0.6),
-              0 0 40px rgba(255, 0, 128, 0.3);
+              0 0 40px rgba(0, 217, 255, 0.3);
   transform: scale(1.05);
 }
 
@@ -106,7 +106,7 @@
 
 .leaderboard-btn {
   padding: 14px 32px;
-  background: linear-gradient(135deg, #ff0080, #ff1493, #ff10f0);
+  background: linear-gradient(135deg, #00d9ff, #00f0ff, #0099ff);
   color: white;
   border: none;
   border-radius: 14px;
@@ -114,7 +114,7 @@
   font-size: 15px;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 8px 24px rgba(255, 0, 128, 0.5);
+  box-shadow: 0 8px 24px rgba(0, 217, 255, 0.5);
   display: flex;
   align-items: center;
   gap: 10px;
@@ -144,8 +144,8 @@
 
 .leaderboard-btn:hover {
   transform: translateY(-4px) scale(1.05);
-  box-shadow: 0 12px 36px rgba(255, 0, 128, 0.7),
-              0 0 50px rgba(255, 16, 240, 0.5);
+  box-shadow: 0 12px 36px rgba(0, 217, 255, 0.7),
+              0 0 50px rgba(0, 153, 255, 0.5);
 }
 
 .leaderboard-btn:active {
@@ -177,7 +177,7 @@
 .challenge-list.error button {
   margin-top: 25px;
   padding: 14px 36px;
-  background: linear-gradient(135deg, #8b5cf6, #ff0080);
+  background: linear-gradient(135deg, #8b5cf6, #00d9ff);
   color: white;
   border: none;
   border-radius: 14px;
@@ -242,7 +242,7 @@
   right: -50%;
   width: 200%;
   height: 200%;
-  background: radial-gradient(circle, rgba(255, 0, 128, 0.2) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(0, 217, 255, 0.2) 0%, transparent 70%);
   opacity: 0;
   transition: opacity 0.6s ease, transform 0.6s ease;
   pointer-events: none;
@@ -260,7 +260,7 @@
   left: 0;
   right: 0;
   height: 5px;
-  background: linear-gradient(90deg, #8b5cf6, #ff0080, #ff10f0);
+  background: linear-gradient(90deg, #8b5cf6, #00d9ff, #0099ff);
   transform: scaleX(0);
   transition: transform 0.4s ease;
   z-index: 2;
@@ -271,9 +271,9 @@
 }
 
 .challenge-card:hover {
-  border-color: #ff0080;
+  border-color: #00d9ff;
   box-shadow: 0 25px 60px rgba(139, 92, 246, 0.6),
-              0 0 80px rgba(255, 0, 128, 0.4),
+              0 0 80px rgba(0, 217, 255, 0.4),
               inset 0 1px 0 rgba(255, 255, 255, 0.2);
   transform: translateY(-12px) scale(1.03);
   background: rgba(139, 92, 246, 0.12);
@@ -380,12 +380,12 @@
 }
 
 .challenge-meta span:hover {
-  background: linear-gradient(135deg, rgba(139, 92, 246, 0.4), rgba(255, 0, 128, 0.3));
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.4), rgba(0, 217, 255, 0.3));
   color: #ffffff;
   transform: translateY(-3px) scale(1.05);
   box-shadow: 0 8px 20px rgba(139, 92, 246, 0.5),
-              0 0 30px rgba(255, 0, 128, 0.3);
-  border-color: #ff0080;
+              0 0 30px rgba(0, 217, 255, 0.3);
+  border-color: #00d9ff;
 }
 
 .challenge-times {
@@ -411,7 +411,7 @@
 .start-button {
   margin-top: auto;
   padding: 18px 36px;
-  background: linear-gradient(135deg, #8b5cf6 0%, #ff0080 50%, #ff10f0 100%);
+  background: linear-gradient(135deg, #8b5cf6 0%, #00d9ff 50%, #0099ff 100%);
   color: white;
   border: none;
   border-radius: 16px;
@@ -420,7 +420,7 @@
   cursor: pointer;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: 0 10px 30px rgba(139, 92, 246, 0.6),
-              0 0 40px rgba(255, 0, 128, 0.3);
+              0 0 40px rgba(0, 217, 255, 0.3);
   position: relative;
   overflow: hidden;
   z-index: 1;
@@ -449,8 +449,8 @@
 .start-button:hover {
   transform: translateY(-5px) scale(1.02);
   box-shadow: 0 15px 45px rgba(139, 92, 246, 0.8),
-              0 0 60px rgba(255, 0, 128, 0.6),
-              0 0 100px rgba(255, 16, 240, 0.4);
+              0 0 60px rgba(0, 217, 255, 0.6),
+              0 0 100px rgba(0, 153, 255, 0.4);
   filter: brightness(1.15);
 }
 
@@ -505,7 +505,7 @@
 .thank-you-banner {
   margin: 30px 0;
   padding: 40px;
-  background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(255, 0, 128, 0.15));
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(0, 217, 255, 0.15));
   border: 3px solid rgba(139, 92, 246, 0.5);
   border-radius: 24px;
   text-align: center;
@@ -531,8 +531,8 @@
                 0 0 30px rgba(139, 92, 246, 0.3);
   }
   50% { 
-    box-shadow: 0 20px 60px rgba(255, 0, 128, 0.6),
-                0 0 50px rgba(255, 0, 128, 0.4);
+    box-shadow: 0 20px 60px rgba(0, 217, 255, 0.6),
+                0 0 50px rgba(0, 217, 255, 0.4);
   }
 }
 
@@ -555,7 +555,7 @@
 .thank-you-title {
   font-size: 42px;
   font-weight: 900;
-  background: linear-gradient(135deg, #8b5cf6, #ff0080, #ff10f0);
+  background: linear-gradient(135deg, #8b5cf6, #00d9ff, #0099ff);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -636,7 +636,7 @@
 
 .level-progress-bar {
   height: 100%;
-  background: linear-gradient(90deg, #8b5cf6, #ff0080, #ff10f0);
+  background: linear-gradient(90deg, #8b5cf6, #00d9ff, #0099ff);
   background-size: 200% 100%;
   transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
   animation: shimmerProgress 2s ease-in-out infinite;
@@ -749,7 +749,7 @@
 /* Enhanced Header Title */
 .challenge-list-header h2 {
   margin: 0;
-  background: linear-gradient(135deg, #8b5cf6, #ff0080, #ff10f0);
+  background: linear-gradient(135deg, #8b5cf6, #00d9ff, #0099ff);
   background-size: 200% 100%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -804,7 +804,7 @@
   height: 80px;
   border: 6px solid rgba(139, 92, 246, 0.2);
   border-top-color: #8b5cf6;
-  border-right-color: #ff0080;
+  border-right-color: #00d9ff;
   border-radius: 50%;
   animation: spin 1s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
   box-shadow: 0 0 50px rgba(139, 92, 246, 0.5);
@@ -821,7 +821,7 @@
   }
   50% { 
     text-shadow: 0 4px 20px rgba(139, 92, 246, 0.6),
-                 0 0 40px rgba(255, 0, 128, 0.4);
+                 0 0 40px rgba(0, 217, 255, 0.4);
   }
 }
 
@@ -871,7 +871,7 @@
   animation: modalSlideUp 0.5s ease;
   border: 3px solid rgba(139, 92, 246, 0.5);
   box-shadow: 0 30px 90px rgba(139, 92, 246, 0.6),
-              0 0 120px rgba(255, 0, 128, 0.4);
+              0 0 120px rgba(0, 217, 255, 0.4);
   max-width: 700px;
   width: 90%;
 }
@@ -891,7 +891,7 @@
   margin: 0 0 20px 0;
   font-size: 36px;
   font-weight: 900;
-  background: linear-gradient(135deg, #8b5cf6, #ff0080, #ff10f0);
+  background: linear-gradient(135deg, #8b5cf6, #00d9ff, #0099ff);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -915,7 +915,7 @@
 
 .language-option {
   padding: 30px 20px;
-  background: linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(255, 0, 128, 0.1));
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(0, 217, 255, 0.1));
   border: 3px solid rgba(139, 92, 246, 0.4);
   border-radius: 20px;
   cursor: pointer;
@@ -944,11 +944,11 @@
 }
 
 .language-option:hover {
-  border-color: #ff0080;
-  background: linear-gradient(135deg, rgba(139, 92, 246, 0.3), rgba(255, 0, 128, 0.25));
+  border-color: #00d9ff;
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.3), rgba(0, 217, 255, 0.25));
   transform: translateY(-8px) scale(1.05);
   box-shadow: 0 20px 60px rgba(139, 92, 246, 0.6),
-              0 0 80px rgba(255, 0, 128, 0.5);
+              0 0 80px rgba(0, 217, 255, 0.5);
 }
 
 .language-icon {
@@ -997,7 +997,7 @@
   justify-content: center;
   gap: 15px;
   padding: 20px 40px;
-  background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(255, 0, 128, 0.15));
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(0, 217, 255, 0.15));
   border: 3px solid rgba(139, 92, 246, 0.5);
   border-radius: 20px;
   margin-bottom: 30px;
@@ -1009,7 +1009,7 @@
     box-shadow: 0 8px 30px rgba(139, 92, 246, 0.4);
   }
   50% { 
-    box-shadow: 0 12px 40px rgba(255, 0, 128, 0.6),
+    box-shadow: 0 12px 40px rgba(0, 217, 255, 0.6),
                 0 0 60px rgba(139, 92, 246, 0.4);
   }
 }
@@ -1025,7 +1025,7 @@
 .badge-value {
   font-size: 24px;
   font-weight: 900;
-  background: linear-gradient(135deg, #8b5cf6, #ff0080);
+  background: linear-gradient(135deg, #8b5cf6, #00d9ff);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -1107,7 +1107,7 @@
   right: -50%;
   width: 200%;
   height: 200%;
-  background: radial-gradient(circle, rgba(255, 0, 128, 0.2) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(0, 217, 255, 0.2) 0%, transparent 70%);
   opacity: 0;
   transition: opacity 0.6s ease, transform 0.6s ease;
   pointer-events: none;
@@ -1125,7 +1125,7 @@
   left: 0;
   right: 0;
   height: 5px;
-  background: linear-gradient(90deg, #8b5cf6, #ff0080, #ff10f0);
+  background: linear-gradient(90deg, #8b5cf6, #00d9ff, #0099ff);
   transform: scaleX(0);
   transition: transform 0.4s ease;
   z-index: 2;
@@ -1136,9 +1136,9 @@
 }
 
 .challenge-card-new:hover {
-  border-color: #ff0080;
+  border-color: #00d9ff;
   box-shadow: 0 25px 60px rgba(139, 92, 246, 0.6),
-              0 0 80px rgba(255, 0, 128, 0.4),
+              0 0 80px rgba(0, 217, 255, 0.4),
               inset 0 1px 0 rgba(255, 255, 255, 0.2);
   transform: translateY(-12px) scale(1.03);
   background: rgba(139, 92, 246, 0.12);
@@ -1264,11 +1264,11 @@
 }
 
 .lang-btn.active {
-  background: linear-gradient(135deg, #8b5cf6, #ff0080);
+  background: linear-gradient(135deg, #8b5cf6, #00d9ff);
   color: white;
   border-color: #8b5cf6;
   box-shadow: 0 6px 18px rgba(139, 92, 246, 0.6),
-              0 0 30px rgba(255, 0, 128, 0.3);
+              0 0 30px rgba(0, 217, 255, 0.3);
   transform: scale(1.05);
 }
 
@@ -1282,7 +1282,7 @@
   align-items: center;
   gap: 12px;
   padding: 16px 24px;
-  background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(255, 0, 128, 0.15));
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(0, 217, 255, 0.15));
   border: 2px solid rgba(139, 92, 246, 0.5);
   border-radius: 16px;
   animation: badgeGlow 3s ease-in-out infinite;
@@ -1299,7 +1299,7 @@
 .lang-value {
   font-size: 1.1em;
   font-weight: 900;
-  background: linear-gradient(135deg, #8b5cf6, #ff0080);
+  background: linear-gradient(135deg, #8b5cf6, #00d9ff);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -1347,11 +1347,11 @@
 }
 
 .meta-item:hover {
-  background: linear-gradient(135deg, rgba(139, 92, 246, 0.3), rgba(255, 0, 128, 0.2));
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.3), rgba(0, 217, 255, 0.2));
   color: #ffffff;
   transform: translateY(-2px);
   box-shadow: 0 6px 18px rgba(139, 92, 246, 0.4);
-  border-color: #ff0080;
+  border-color: #00d9ff;
 }
 
 .meta-icon {
@@ -1362,7 +1362,7 @@
 .start-button-new {
   margin-top: auto;
   padding: 18px 36px;
-  background: linear-gradient(135deg, #8b5cf6 0%, #ff0080 50%, #ff10f0 100%);
+  background: linear-gradient(135deg, #8b5cf6 0%, #00d9ff 50%, #0099ff 100%);
   color: white;
   border: none;
   border-radius: 16px;
@@ -1371,7 +1371,7 @@
   cursor: pointer;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: 0 10px 30px rgba(139, 92, 246, 0.6),
-              0 0 40px rgba(255, 0, 128, 0.3);
+              0 0 40px rgba(0, 217, 255, 0.3);
   position: relative;
   overflow: hidden;
   z-index: 1;
@@ -1400,8 +1400,8 @@
 .start-button-new:hover {
   transform: translateY(-5px) scale(1.02);
   box-shadow: 0 15px 45px rgba(139, 92, 246, 0.8),
-              0 0 60px rgba(255, 0, 128, 0.6),
-              0 0 100px rgba(255, 16, 240, 0.4);
+              0 0 60px rgba(0, 217, 255, 0.6),
+              0 0 100px rgba(0, 153, 255, 0.4);
   filter: brightness(1.15);
 }
 

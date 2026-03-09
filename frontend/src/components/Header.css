@@ -1,4 +1,4 @@
-/* Professional Header - Purple + Electric Pink Theme */
+/* Professional Header - Purple + Cyan Theme */
 
 .app-header-with-logos {
   background: linear-gradient(135deg, #0f1419 0%, #1a1f2e 50%, #0f1419 100%);
@@ -13,7 +13,7 @@
   justify-content: space-between;
   gap: 30px;
   border-bottom: 3px solid transparent;
-  border-image: linear-gradient(90deg, #8b5cf6, #ff0080, #8b5cf6) 1;
+  border-image: linear-gradient(90deg, #8b5cf6, #00d9ff, #8b5cf6) 1;
 }
 
 /* Animated background gradient */
@@ -27,7 +27,7 @@
   background: linear-gradient(90deg, 
     transparent 0%, 
     rgba(139, 92, 246, 0.1) 25%, 
-    rgba(255, 0, 128, 0.1) 50%, 
+    rgba(0, 217, 255, 0.1) 50%, 
     rgba(139, 92, 246, 0.1) 75%, 
     transparent 100%);
   animation: shimmer 8s linear infinite;
@@ -67,11 +67,12 @@
   filter: drop-shadow(0 4px 16px rgba(139, 92, 246, 0.4));
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   padding: 20px;
+  transform: rotate(0deg); /* Keep logos straight */
 }
 
 .header-logo:hover {
-  transform: scale(1.1) rotate(5deg);
-  filter: drop-shadow(0 8px 24px rgba(255, 0, 128, 0.6));
+  transform: scale(1.1);
+  filter: drop-shadow(0 8px 24px rgba(0, 217, 255, 0.6));
 }
 
 .header-logo-left {
@@ -152,14 +153,14 @@
   transform: translateX(-50%);
   width: 60%;
   height: 3px;
-  background: linear-gradient(90deg, transparent, #8b5cf6, #ff0080, #8b5cf6, transparent);
+  background: linear-gradient(90deg, transparent, #8b5cf6, #00d9ff, #8b5cf6, transparent);
   border-radius: 2px;
   animation: underlineGlow 3s ease-in-out infinite;
 }
 
 @keyframes underlineGlow {
   0%, 100% { box-shadow: 0 0 10px rgba(139, 92, 246, 0.5); }
-  50% { box-shadow: 0 0 20px rgba(255, 0, 128, 0.8); }
+  50% { box-shadow: 0 0 20px rgba(0, 217, 255, 0.8); }
 }
 
 @keyframes titleReveal {
@@ -233,7 +234,7 @@
 }
 
 .header-content button:hover {
-  background: linear-gradient(135deg, #8b5cf6, #ff0080);
+  background: linear-gradient(135deg, #8b5cf6, #00d9ff);
   border-color: #8b5cf6;
   color: white;
   transform: translateY(-2px);
