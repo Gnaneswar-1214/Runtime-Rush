@@ -30,11 +30,13 @@ async def health_check():
     return {"status": "healthy"}
 
 
+@app.get("/initialize-db")
 @app.post("/initialize-db")
 async def initialize_database():
     """
     Initialize database with admin user and challenges
     Call this endpoint ONCE after deployment to set up the database
+    Can be accessed via GET (browser) or POST (API)
     """
     from app.database import SessionLocal
     from app.models_sqlite import User, Challenge, CodeFragment
