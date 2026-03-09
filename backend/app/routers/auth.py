@@ -123,7 +123,50 @@ async def get_user_progress(user_id: str, db: Session = Depends(get_db)):
         "level1_completed": progress.level1_completed,
         "level2_completed": progress.level2_completed,
         "level3_completed": progress.level3_completed,
+        "level1_language": progress.level1_language,
+        "level2_language": progress.level2_language,
+        "level3_language": progress.level3_language,
         "total_score": progress.total_score
+    }
+
+@router.post("/users/{user_id}/select-language/{level}")
+async def select_language(user_id: str, level: int, language: str, db: Session = Depends(get_db)):
+    """Select language for a specific level. Can only be done once per level."""
+    progress = db.query(UserProgress).filter(UserProgress.user_id == user_id).first()
+    if not progress:
+        raise HTTPException(status_code=404, detail="Progress not found")
+    
+    # Validate language
+    valid_languages = ["python", "c", "java", "cpp"]
+    if language not in valid_languages:
+        raise HTTPException(status_code=400, detail=f"Invalid language. Must be one of: {', '.join(valid_languages)}")
+    
+    # Check if language already selected for this level
+    if level == 1:
+        if progress.level1_language:
+            raise HTTPException(status_code=400, detail="Language already selected for Level 1")
+        progress.level1_language = language
+    elif level == 2:
+        if progress.level2_language:
+            raise HTTPException(status_code=400, detail="Language already selected for Level 2")
+        if not progress.level1_completed:
+            raise HTTPException(status_code=400, detail="Must complete Level 1 first")
+        progress.level2_language = language
+    elif level == 3:
+        if progress.level3_language:
+            raise HTTPException(status_code=400, detail="Language already selected for Level 3")
+        if not progress.level2_completed:
+            raise HTTPException(status_code=400, detail="Must complete Level 2 first")
+        progress.level3_language = language
+    else:
+        raise HTTPException(status_code=400, detail="Invalid level")
+    
+    db.commit()
+    
+    return {
+        "message": f"Language {language} selected for Level {level}",
+        "level": level,
+        "language": language
     }
 
 @router.post("/users/{user_id}/complete-level/{level}")

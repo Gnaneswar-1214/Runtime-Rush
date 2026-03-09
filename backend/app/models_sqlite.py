@@ -38,6 +38,9 @@ class UserProgress(Base):
     level1_submission_order = Column(Integer, default=0)  # 1st, 2nd, 3rd...
     level2_submission_order = Column(Integer, default=0)
     level3_submission_order = Column(Integer, default=0)
+    level1_language = Column(String(50), default=None)  # Selected language for level 1
+    level2_language = Column(String(50), default=None)  # Selected language for level 2
+    level3_language = Column(String(50), default=None)  # Selected language for level 3
     total_score = Column(Integer, default=0)
     updated_at = Column(DateTime, server_default=func.now(), onupdate=func.now())
     

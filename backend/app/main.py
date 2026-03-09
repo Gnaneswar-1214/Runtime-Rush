@@ -72,43 +72,155 @@ async def initialize_database():
         existing_count = db.query(Challenge).count()
         if existing_count == 0:
             challenges_data = [
+                # Level 1: Armstrong Number - 4 languages
                 {
-                    "title": "Binary Search Algorithm",
-                    "description": "Implement a binary search algorithm to find an element in a sorted array. Arrange the code fragments in the correct order.",
+                    "title": "Armstrong Number - Python",
+                    "description": "Check if a number is an Armstrong number (sum of cubes of digits equals the number). Arrange the code fragments in the correct order.",
                     "language": "python",
                     "level": 1,
                     "fragments": [
-                        "def binary_search(arr, target):\n    left, right = 0, len(arr) - 1",
-                        "    while left <= right:\n        mid = (left + right) // 2",
-                        "        if arr[mid] == target:\n            return mid",
-                        "        elif arr[mid] < target:\n            left = mid + 1",
-                        "        else:\n            right = mid - 1\n    return -1"
+                        "def is_armstrong(n):\n    digits = str(n)\n    power = len(digits)",
+                        "    total = 0\n    for digit in digits:",
+                        "        total += int(digit) ** power",
+                        "    return total == n"
                     ]
                 },
                 {
-                    "title": "Quick Sort Algorithm",
-                    "description": "Implement the quick sort algorithm to sort an array. Arrange the code fragments in the correct order.",
-                    "language": "python",
-                    "level": 2,
+                    "title": "Armstrong Number - C",
+                    "description": "Check if a number is an Armstrong number (sum of cubes of digits equals the number). Arrange the code fragments in the correct order.",
+                    "language": "c",
+                    "level": 1,
                     "fragments": [
-                        "def quick_sort(arr):\n    if len(arr) <= 1:\n        return arr",
-                        "    pivot = arr[len(arr) // 2]",
-                        "    left = [x for x in arr if x < pivot]",
-                        "    middle = [x for x in arr if x == pivot]\n    right = [x for x in arr if x > pivot]",
-                        "    return quick_sort(left) + middle + quick_sort(right)"
+                        "int is_armstrong(int n) {\n    int original = n, sum = 0, digits = 0;",
+                        "    int temp = n;\n    while(temp != 0) { digits++; temp /= 10; }",
+                        "    temp = n;\n    while(temp != 0) { int digit = temp % 10; sum += pow(digit, digits); temp /= 10; }",
+                        "    return sum == original;\n}"
                     ]
                 },
                 {
-                    "title": "Merge Sort Algorithm",
+                    "title": "Armstrong Number - Java",
+                    "description": "Check if a number is an Armstrong number (sum of cubes of digits equals the number). Arrange the code fragments in the correct order.",
+                    "language": "java",
+                    "level": 1,
+                    "fragments": [
+                        "public static boolean isArmstrong(int n) {\n    String digits = String.valueOf(n);\n    int power = digits.length();",
+                        "    int total = 0;\n    for (char digit : digits.toCharArray()) {",
+                        "        total += Math.pow(Character.getNumericValue(digit), power);",
+                        "    }\n    return total == n;\n}"
+                    ]
+                },
+                {
+                    "title": "Armstrong Number - C++",
+                    "description": "Check if a number is an Armstrong number (sum of cubes of digits equals the number). Arrange the code fragments in the correct order.",
+                    "language": "cpp",
+                    "level": 1,
+                    "fragments": [
+                        "bool isArmstrong(int n) {\n    int original = n, sum = 0, digits = 0;",
+                        "    int temp = n;\n    while(temp != 0) { digits++; temp /= 10; }",
+                        "    temp = n;\n    while(temp != 0) { int digit = temp % 10; sum += pow(digit, digits); temp /= 10; }",
+                        "    return sum == original;\n}"
+                    ]
+                },
+                # Level 2: Merge Sort - 4 languages
+                {
+                    "title": "Merge Sort - Python",
                     "description": "Implement the merge sort algorithm to sort an array. Arrange the code fragments in the correct order.",
                     "language": "python",
-                    "level": 3,
+                    "level": 2,
                     "fragments": [
                         "def merge_sort(arr):\n    if len(arr) <= 1:\n        return arr",
                         "    mid = len(arr) // 2\n    left = merge_sort(arr[:mid])\n    right = merge_sort(arr[mid:])",
                         "    return merge(left, right)\n\ndef merge(left, right):\n    result = []",
                         "    i = j = 0\n    while i < len(left) and j < len(right):",
                         "        if left[i] <= right[j]:\n            result.append(left[i])\n            i += 1\n        else:\n            result.append(right[j])\n            j += 1\n    result.extend(left[i:])\n    result.extend(right[j:])\n    return result"
+                    ]
+                },
+                {
+                    "title": "Merge Sort - C",
+                    "description": "Implement the merge sort algorithm to sort an array. Arrange the code fragments in the correct order.",
+                    "language": "c",
+                    "level": 2,
+                    "fragments": [
+                        "void merge(int arr[], int l, int m, int r) {\n    int n1 = m - l + 1, n2 = r - m;\n    int L[n1], R[n2];",
+                        "    for(int i = 0; i < n1; i++) L[i] = arr[l + i];\n    for(int j = 0; j < n2; j++) R[j] = arr[m + 1 + j];",
+                        "    int i = 0, j = 0, k = l;\n    while(i < n1 && j < n2) { arr[k++] = (L[i] <= R[j]) ? L[i++] : R[j++]; }",
+                        "    while(i < n1) arr[k++] = L[i++];\n    while(j < n2) arr[k++] = R[j++];\n}",
+                        "void mergeSort(int arr[], int l, int r) {\n    if(l < r) { int m = l + (r - l) / 2; mergeSort(arr, l, m); mergeSort(arr, m + 1, r); merge(arr, l, m, r); }\n}"
+                    ]
+                },
+                {
+                    "title": "Merge Sort - Java",
+                    "description": "Implement the merge sort algorithm to sort an array. Arrange the code fragments in the correct order.",
+                    "language": "java",
+                    "level": 2,
+                    "fragments": [
+                        "public static void mergeSort(int[] arr, int l, int r) {\n    if (l < r) {",
+                        "        int m = l + (r - l) / 2;\n        mergeSort(arr, l, m);\n        mergeSort(arr, m + 1, r);",
+                        "        merge(arr, l, m, r);\n    }\n}",
+                        "private static void merge(int[] arr, int l, int m, int r) {\n    int n1 = m - l + 1, n2 = r - m;\n    int[] L = new int[n1], R = new int[n2];",
+                        "    for(int i = 0; i < n1; i++) L[i] = arr[l + i];\n    for(int j = 0; j < n2; j++) R[j] = arr[m + 1 + j];\n    int i = 0, j = 0, k = l;\n    while(i < n1 && j < n2) arr[k++] = (L[i] <= R[j]) ? L[i++] : R[j++];\n    while(i < n1) arr[k++] = L[i++];\n    while(j < n2) arr[k++] = R[j++];\n}"
+                    ]
+                },
+                {
+                    "title": "Merge Sort - C++",
+                    "description": "Implement the merge sort algorithm to sort an array. Arrange the code fragments in the correct order.",
+                    "language": "cpp",
+                    "level": 2,
+                    "fragments": [
+                        "void merge(vector<int>& arr, int l, int m, int r) {\n    vector<int> L(arr.begin() + l, arr.begin() + m + 1);\n    vector<int> R(arr.begin() + m + 1, arr.begin() + r + 1);",
+                        "    int i = 0, j = 0, k = l;\n    while(i < L.size() && j < R.size()) {",
+                        "        arr[k++] = (L[i] <= R[j]) ? L[i++] : R[j++];",
+                        "    }\n    while(i < L.size()) arr[k++] = L[i++];\n    while(j < R.size()) arr[k++] = R[j++];\n}",
+                        "void mergeSort(vector<int>& arr, int l, int r) {\n    if(l < r) { int m = l + (r - l) / 2; mergeSort(arr, l, m); mergeSort(arr, m + 1, r); merge(arr, l, m, r); }\n}"
+                    ]
+                },
+                # Level 3: Valid Parenthesis - 4 languages
+                {
+                    "title": "Valid Parenthesis - Python",
+                    "description": "Check if parentheses in a string are balanced. Arrange the code fragments in the correct order.",
+                    "language": "python",
+                    "level": 3,
+                    "fragments": [
+                        "def is_valid(s):\n    stack = []\n    pairs = {'(': ')', '{': '}', '[': ']'}",
+                        "    for char in s:\n        if char in pairs:",
+                        "            stack.append(char)\n        elif char in pairs.values():",
+                        "            if not stack or pairs[stack.pop()] != char:\n                return False\n    return len(stack) == 0"
+                    ]
+                },
+                {
+                    "title": "Valid Parenthesis - C",
+                    "description": "Check if parentheses in a string are balanced. Arrange the code fragments in the correct order.",
+                    "language": "c",
+                    "level": 3,
+                    "fragments": [
+                        "bool isValid(char* s) {\n    char stack[10000];\n    int top = -1;",
+                        "    for(int i = 0; s[i]; i++) {\n        if(s[i] == '(' || s[i] == '{' || s[i] == '[') {",
+                        "            stack[++top] = s[i];\n        } else {",
+                        "            if(top == -1) return false;\n            char open = stack[top--];\n            if((s[i] == ')' && open != '(') || (s[i] == '}' && open != '{') || (s[i] == ']' && open != '[')) return false;\n        }\n    }\n    return top == -1;\n}"
+                    ]
+                },
+                {
+                    "title": "Valid Parenthesis - Java",
+                    "description": "Check if parentheses in a string are balanced. Arrange the code fragments in the correct order.",
+                    "language": "java",
+                    "level": 3,
+                    "fragments": [
+                        "public static boolean isValid(String s) {\n    Stack<Character> stack = new Stack<>();\n    Map<Character, Character> pairs = Map.of('(', ')', '{', '}', '[', ']');",
+                        "    for (char c : s.toCharArray()) {\n        if (pairs.containsKey(c)) {",
+                        "            stack.push(c);\n        } else if (pairs.containsValue(c)) {",
+                        "            if (stack.isEmpty() || pairs.get(stack.pop()) != c) return false;\n        }\n    }\n    return stack.isEmpty();\n}"
+                    ]
+                },
+                {
+                    "title": "Valid Parenthesis - C++",
+                    "description": "Check if parentheses in a string are balanced. Arrange the code fragments in the correct order.",
+                    "language": "cpp",
+                    "level": 3,
+                    "fragments": [
+                        "bool isValid(string s) {\n    stack<char> st;\n    unordered_map<char, char> pairs = {{'(', ')'}, {'{', '}'}, {'[', ']'}};",
+                        "    for(char c : s) {\n        if(pairs.count(c)) {",
+                        "            st.push(c);\n        } else {",
+                        "            if(st.empty() || pairs[st.top()] != c) return false;\n            st.pop();\n        }\n    }\n    return st.empty();\n}"
                     ]
                 }
             ]
