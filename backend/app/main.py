@@ -10,6 +10,35 @@ app = FastAPI(title="Runtime Rush API", version="1.0.0")
 # ✅ CREATE TABLES ON STARTUP (CRITICAL FOR RAILWAY)
 Base.metadata.create_all(bind=engine)
 
+# ✅ AUTO-MIGRATE DATABASE SCHEMA (ADD MISSING COLUMNS)
+def auto_migrate_database():
+    """Automatically add missing columns to existing database"""
+    from app.database import SessionLocal
+    import sqlite3
+    
+    db = SessionLocal()
+    try:
+        # Check if tab_switch_count column exists
+        result = db.execute("PRAGMA table_info(user_progress)")
+        columns = [row[1] for row in result.fetchall()]
+        
+        if 'tab_switch_count' not in columns:
+            print("⚠️ Missing tab_switch_count column! Adding it now...")
+            db.execute("ALTER TABLE user_progress ADD COLUMN tab_switch_count INTEGER DEFAULT 0")
+            db.commit()
+            print("✅ Added tab_switch_count column successfully!")
+        else:
+            print("✅ Database schema is up to date")
+            
+    except Exception as e:
+        print(f"❌ Migration failed: {e}")
+        db.rollback()
+    finally:
+        db.close()
+
+# Run migration before initialization
+auto_migrate_database()
+
 # ✅ AUTO-INITIALIZE DATABASE IF EMPTY (FOR RAILWAY EPHEMERAL STORAGE)
 def auto_initialize_database():
     """Automatically initialize database with challenges if empty"""
