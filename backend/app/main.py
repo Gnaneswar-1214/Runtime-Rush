@@ -199,37 +199,6 @@ def auto_initialize_database():
                         "    }\n}"
                     ]
                 }
-                        "        left++;\n        right--;",\n                        "    }\n}"
-                    ]
-                }
-            ]
-            
-            for challenge_data in challenges_data:
-                challenge_id = str(uuid.uuid4())
-                challenge = Challenge(
-                    id=challenge_id,
-                    title=challenge_data["title"],
-                    description=challenge_data["description"],
-                    language=challenge_data["language"],
-                    level=challenge_data["level"],
-                    correct_solution="\n".join(challenge_data["fragments"]),
-                    start_time=datetime.now(),
-                    end_time=datetime.now() + timedelta(days=365),
-                    created_by=admin_id
-                )
-                db.add(challenge)
-                
-                for idx, fragment_content in enumerate(challenge_data["fragments"]):
-                    fragment = CodeFragment(
-                        id=str(uuid.uuid4()),
-                        challenge_id=challenge_id,
-                        content=fragment_content,
-                        original_order=idx + 1
-                    )
-                    db.add(fragment)
-                
-                db.commit()
-            
             print("✅ Database auto-initialized with 12 challenges!")
         else:
             print(f"✅ Database already has {challenge_count} challenges")
@@ -459,35 +428,6 @@ async def initialize_database():
                         "    }\n}"
                     ]
                 }
-                        "        left++;\n        right--;",\n                        "    }\n}"
-                    ]
-                }
-            ]
-            
-            for challenge_data in challenges_data:
-                challenge_id = str(uuid.uuid4())
-                challenge = Challenge(
-                    id=challenge_id,
-                    title=challenge_data["title"],
-                    description=challenge_data["description"],
-                    language=challenge_data["language"],
-                    level=challenge_data["level"],
-                    correct_solution="\n".join(challenge_data["fragments"]),
-                    start_time=datetime.now(),
-                    end_time=datetime.now() + timedelta(days=365),
-                    created_by=admin_id
-                )
-                db.add(challenge)
-                
-                for idx, fragment_content in enumerate(challenge_data["fragments"]):
-                    fragment = CodeFragment(
-                        id=str(uuid.uuid4()),
-                        challenge_id=challenge_id,
-                        content=fragment_content,
-                        original_order=idx + 1
-                    )
-                    db.add(fragment)
-                
                 db.commit()
                 results["challenges_created"] += 1
         
