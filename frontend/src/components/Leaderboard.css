@@ -443,3 +443,26 @@
     font-size: 18px;
   }
 }
+
+
+/* Violations Column */
+.violations-cell {
+  text-align: center;
+  padding: 12px;
+}
+
+.violations-badge {
+  display: inline-block;
+  background: #ff4444;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.violations-cell .no-violations {
+  color: #4CAF50;
+  font-size: 20px;
+  font-weight: bold;
+}

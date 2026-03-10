@@ -42,6 +42,7 @@ class UserProgress(Base):
     level2_language = Column(String(50), default=None)  # Selected language for level 2
     level3_language = Column(String(50), default=None)  # Selected language for level 3
     total_score = Column(Integer, default=0)
+    tab_switch_count = Column(Integer, default=0)  # Track tab switch violations
     updated_at = Column(DateTime, server_default=func.now(), onupdate=func.now())
     
     user = relationship("User", back_populates="progress")

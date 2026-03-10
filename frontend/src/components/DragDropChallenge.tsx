@@ -45,31 +45,111 @@ const DragDropChallenge: React.FC<DragDropChallengeProps> = ({ challenge, user, 
   const [showError, setShowError] = useState(false);
   const [earnedScore, setEarnedScore] = useState(0);
   const [showLeaderboard, setShowLeaderboard] = useState(false);
+  const [tabSwitchCount, setTabSwitchCount] = useState(0);
   const [tabSwitchWarning, setTabSwitchWarning] = useState(false);
 
-  // Tab switching detection
+  // Tab switching and fullscreen detection
   useEffect(() => {
     if (!timerActive) return; // Only monitor when challenge is active
 
-    const handleVisibilityChange = () => {
+    const handleVisibilityChange = async () => {
       if (document.hidden) {
         // User switched away from the tab
         setTimerActive(false); // Pause the timer
-        setTabSwitchWarning(true); // Show warning
+        
+        // Record tab switch in backend
+        try {
+          const result = await apiClient.recordTabSwitch(user.id);
+          const newCount = result.tab_switch_count;
+          setTabSwitchCount(newCount);
+          
+          if (newCount >= 3) {
+            // 3rd violation - auto-fail
+            await handleAutoFail();
+          } else {
+            // Show warning
+            setTabSwitchWarning(true);
+          }
+        } catch (err) {
+          console.error('Failed to record tab switch:', err);
+        }
+      }
+    };
+
+    const handleFullscreenChange = async () => {
+      if (!document.fullscreenElement) {
+        // User exited fullscreen
+        setTimerActive(false);
+        
+        // Record as tab switch violation
+        try {
+          const result = await apiClient.recordTabSwitch(user.id);
+          const newCount = result.tab_switch_count;
+          setTabSwitchCount(newCount);
+          
+          if (newCount >= 3) {
+            await handleAutoFail();
+          } else {
+            setTabSwitchWarning(true);
+          }
+        } catch (err) {
+          console.error('Failed to record fullscreen exit:', err);
+        }
       }
     };
 
     document.addEventListener('visibilitychange', handleVisibilityChange);
+    document.addEventListener('fullscreenchange', handleFullscreenChange);
 
     return () => {
       document.removeEventListener('visibilitychange', handleVisibilityChange);
+      document.removeEventListener('fullscreenchange', handleFullscreenChange);
     };
-  }, [timerActive]);
+  }, [timerActive, user.id]);
+
+  // Enter fullscreen when challenge starts
+  useEffect(() => {
+    if (timerActive && !showPreview && !showPreviewText && !showStart) {
+      const elem = document.documentElement;
+      if (elem.requestFullscreen && !document.fullscreenElement) {
+        elem.requestFullscreen().catch(err => {
+          console.log('Fullscreen request failed:', err);
+        });
+      }
+    }
+  }, [timerActive, showPreview, showPreviewText, showStart]);
+
+  const handleAutoFail = async () => {
+    try {
+      // Auto-fail: give 0 marks and move to next level
+      await apiClient.completeLevel(user.id, challenge.level || 1, 180);
+      
+      // Clear session data
+      sessionStorage.removeItem(sessionKey);
+      
+      // Show failure message
+      alert(`Challenge failed due to 3 tab switch violations. Moving to next level with 0 marks.`);
+      
+      // Move to next level
+      onComplete();
+    } catch (err) {
+      console.error('Failed to auto-fail level:', err);
+      onBack();
+    }
+  };
 
   const handleTabSwitchOk = () => {
-    // Just resume the challenge
+    // Resume the challenge
     setTabSwitchWarning(false);
     setTimerActive(true); // Resume timer
+    
+    // Re-enter fullscreen
+    const elem = document.documentElement;
+    if (elem.requestFullscreen && !document.fullscreenElement) {
+      elem.requestFullscreen().catch(err => {
+        console.log('Fullscreen request failed:', err);
+      });
+    }
   };
 
   useEffect(() => {
@@ -388,9 +468,13 @@ const DragDropChallenge: React.FC<DragDropChallengeProps> = ({ challenge, user, 
         <div className="tab-switch-overlay">
           <div className="tab-switch-warning">
             <div className="warning-icon">⚠️</div>
-            <h2>Tab Switch Detected!</h2>
-            <p>You switched to another tab or window during the challenge.</p>
-            <p className="warning-consequence">Please stay on this page to continue.</p>
+            <h2>Violation Detected!</h2>
+            <p>You switched tabs/windows or exited fullscreen during the challenge.</p>
+            <p className="warning-count">Warning {tabSwitchCount} of 3</p>
+            <p className="warning-consequence">
+              {tabSwitchCount === 1 && "First warning - please stay on this page."}
+              {tabSwitchCount === 2 && "Second warning - one more violation will result in automatic failure!"}
+            </p>
             <button className="warning-ok-button" onClick={handleTabSwitchOk}>
               OK - Resume Challenge
             </button>

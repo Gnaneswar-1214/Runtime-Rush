@@ -257,7 +257,36 @@ async def get_leaderboard(db: Session = Depends(get_db)):
             "total_time": total_time,
             "level1_time": progress.level1_time_taken,
             "level2_time": progress.level2_time_taken,
-            "level3_time": progress.level3_time_taken
+            "level3_time": progress.level3_time_taken,
+            "tab_switch_count": progress.tab_switch_count or 0
         })
     
     return {"leaderboard": leaderboard}
+
+
+@router.post("/users/{user_id}/tab-switch")
+async def record_tab_switch(user_id: str, db: Session = Depends(get_db)):
+    """Record a tab switch violation for a user"""
+    progress = db.query(UserProgress).filter(UserProgress.user_id == user_id).first()
+    if not progress:
+        raise HTTPException(status_code=404, detail="Progress not found")
+    
+    # Increment tab switch count
+    progress.tab_switch_count += 1
+    db.commit()
+    
+    return {
+        "tab_switch_count": progress.tab_switch_count,
+        "message": f"Tab switch recorded. Total violations: {progress.tab_switch_count}"
+    }
+
+@router.get("/users/{user_id}/tab-switches")
+async def get_tab_switches(user_id: str, db: Session = Depends(get_db)):
+    """Get tab switch count for a user"""
+    progress = db.query(UserProgress).filter(UserProgress.user_id == user_id).first()
+    if not progress:
+        raise HTTPException(status_code=404, detail="Progress not found")
+    
+    return {
+        "tab_switch_count": progress.tab_switch_count
+    }

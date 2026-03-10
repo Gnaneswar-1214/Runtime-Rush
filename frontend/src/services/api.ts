@@ -151,6 +151,23 @@ class ApiClient {
     return response.json();
   }
 
+  async recordTabSwitch(userId: string): Promise<any> {
+    const response = await fetch(
+      `${this.baseUrl}/api/auth/users/${userId}/tab-switch`,
+      { method: "POST" }
+    );
+    if (!response.ok) throw new Error("Failed to record tab switch");
+    return response.json();
+  }
+
+  async getTabSwitches(userId: string): Promise<any> {
+    const response = await fetch(
+      `${this.baseUrl}/api/auth/users/${userId}/tab-switches`
+    );
+    if (!response.ok) throw new Error("Failed to get tab switches");
+    return response.json();
+  }
+
   // ================= ADMIN =================
 
   async getAllUsers(adminId: string): Promise<any[]> {

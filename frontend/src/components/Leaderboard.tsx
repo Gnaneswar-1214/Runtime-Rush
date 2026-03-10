@@ -13,6 +13,7 @@ interface LeaderboardEntry {
   level1_time: number;
   level2_time: number;
   level3_time: number;
+  tab_switch_count: number;
 }
 
 interface LeaderboardProps {
@@ -94,6 +95,7 @@ const Leaderboard: React.FC<LeaderboardProps> = ({ onClose }) => {
                     <th>Level 2</th>
                     <th>Level 3</th>
                     <th>Total Time</th>
+                    <th>Violations</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -129,6 +131,15 @@ const Leaderboard: React.FC<LeaderboardProps> = ({ onClose }) => {
                       </td>
                       <td className="time-cell">
                         <span className="total-time">{formatTime(entry.total_time)}</span>
+                      </td>
+                      <td className="violations-cell">
+                        {entry.tab_switch_count > 0 ? (
+                          <span className="violations-badge">
+                            🚫 {entry.tab_switch_count}
+                          </span>
+                        ) : (
+                          <span className="no-violations">✓</span>
+                        )}
                       </td>
                     </tr>
                   ))}

@@ -287,6 +287,7 @@ const AdminDashboard: React.FC<AdminDashboardProps> = ({ user, onLogout, onAddCh
                       <th className="col-level">LEVEL 2</th>
                       <th className="col-level">LEVEL 3</th>
                       <th className="col-time">TOTAL TIME</th>
+                      <th className="col-violations">VIOLATIONS</th>
                       <th className="col-actions">ACTIONS</th>
                     </tr>
                   </thead>
@@ -362,6 +363,16 @@ const AdminDashboard: React.FC<AdminDashboardProps> = ({ user, onLogout, onAddCh
                                   return `${mins}:${secs.toString().padStart(2, '0')}`;
                                 })()}
                               </div>
+                            </td>
+                            <td className="col-violations">
+                              {u.tab_switch_count > 0 ? (
+                                <div className="violations-badge">
+                                  <span className="violation-icon">🚫</span>
+                                  <span className="violation-count">{u.tab_switch_count}</span>
+                                </div>
+                              ) : (
+                                <span className="no-violations">✓</span>
+                              )}
                             </td>
                             <td className="col-actions">
                               <button
