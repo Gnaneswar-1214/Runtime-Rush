@@ -100,7 +100,7 @@ const AdminDashboard: React.FC<AdminDashboardProps> = ({ user, onLogout, onAddCh
     setLoading(true);
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_API_URL || "https://runtime-rush-production.up.railway.app"}/api/admin/users/${userId}?admin_id=${user.id}`,
+        `${process.env.REACT_APP_API_URL || "https://runtime-rush-backend2.onrender.com"}/api/admin/users/${userId}?admin_id=${user.id}`,
         { method: "DELETE" }
       );
       

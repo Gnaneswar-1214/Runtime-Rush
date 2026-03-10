@@ -1,9 +1,9 @@
 // API client for Runtime Rush backend
 
-// ✅ Use Railway backend in production, localhost in development
+// ✅ Use Render backend in production, localhost in development
 const API_BASE_URL =
   process.env.REACT_APP_API_URL ||
-  "https://runtime-rush-production.up.railway.app";
+  "https://runtime-rush-backend2.onrender.com";
 
 export interface Challenge {
   id: string;
