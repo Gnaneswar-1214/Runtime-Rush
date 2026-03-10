@@ -146,10 +146,10 @@ def auto_initialize_database():
                         "void mergeSort(vector<int>& arr, int l, int r) {\n    if(l < r) { int m = l + (r - l) / 2; mergeSort(arr, l, m); mergeSort(arr, m + 1, r); merge(arr, l, m, r); }\n}"
                     ]
                 },
-                # Level 3: Valid Parenthesis - 4 languages
+                # Level 3: Reversing Array - 4 languages (5 fragments each)
                 {
-                    "title": "Valid Parenthesis - Python",
-                    "description": "Check if parentheses in a string are balanced. Arrange the code fragments in the correct order.",
+                    "title": "Reversing Array - Python",
+                    "description": "Implement a function to reverse an array in-place. Arrange the code fragments in the correct order.",
                     "language": "python",
                     "level": 3,
                     "fragments": [
@@ -160,8 +160,8 @@ def auto_initialize_database():
                     ]
                 },
                 {
-                    "title": "Valid Parenthesis - C",
-                    "description": "Check if parentheses in a string are balanced. Arrange the code fragments in the correct order.",
+                    "title": "Reversing Array - C",
+                    "description": "Implement a function to reverse an array in-place. Arrange the code fragments in the correct order.",
                     "language": "c",
                     "level": 3,
                     "fragments": [
@@ -172,8 +172,8 @@ def auto_initialize_database():
                     ]
                 },
                 {
-                    "title": "Valid Parenthesis - Java",
-                    "description": "Check if parentheses in a string are balanced. Arrange the code fragments in the correct order.",
+                    "title": "Reversing Array - Java",
+                    "description": "Implement a function to reverse an array in-place. Arrange the code fragments in the correct order.",
                     "language": "java",
                     "level": 3,
                     "fragments": [
@@ -184,8 +184,8 @@ def auto_initialize_database():
                     ]
                 },
                 {
-                    "title": "Valid Parenthesis - C++",
-                    "description": "Check if parentheses in a string are balanced. Arrange the code fragments in the correct order.",
+                    "title": "Reversing Array - C++",
+                    "description": "Implement a function to reverse an array in-place. Arrange the code fragments in the correct order.",
                     "language": "cpp",
                     "level": 3,
                     "fragments": [
@@ -399,10 +399,10 @@ async def initialize_database():
                         "void mergeSort(vector<int>& arr, int l, int r) {\n    if(l < r) { int m = l + (r - l) / 2; mergeSort(arr, l, m); mergeSort(arr, m + 1, r); merge(arr, l, m, r); }\n}"
                     ]
                 },
-                # Level 3: Valid Parenthesis - 4 languages
+                # Level 3: Reversing Array - 4 languages (5 fragments each)
                 {
-                    "title": "Valid Parenthesis - Python",
-                    "description": "Check if parentheses in a string are balanced. Arrange the code fragments in the correct order.",
+                    "title": "Reversing Array - Python",
+                    "description": "Implement a function to reverse an array in-place. Arrange the code fragments in the correct order.",
                     "language": "python",
                     "level": 3,
                     "fragments": [
@@ -413,8 +413,8 @@ async def initialize_database():
                     ]
                 },
                 {
-                    "title": "Valid Parenthesis - C",
-                    "description": "Check if parentheses in a string are balanced. Arrange the code fragments in the correct order.",
+                    "title": "Reversing Array - C",
+                    "description": "Implement a function to reverse an array in-place. Arrange the code fragments in the correct order.",
                     "language": "c",
                     "level": 3,
                     "fragments": [
@@ -425,8 +425,8 @@ async def initialize_database():
                     ]
                 },
                 {
-                    "title": "Valid Parenthesis - Java",
-                    "description": "Check if parentheses in a string are balanced. Arrange the code fragments in the correct order.",
+                    "title": "Reversing Array - Java",
+                    "description": "Implement a function to reverse an array in-place. Arrange the code fragments in the correct order.",
                     "language": "java",
                     "level": 3,
                     "fragments": [
@@ -437,8 +437,8 @@ async def initialize_database():
                     ]
                 },
                 {
-                    "title": "Valid Parenthesis - C++",
-                    "description": "Check if parentheses in a string are balanced. Arrange the code fragments in the correct order.",
+                    "title": "Reversing Array - C++",
+                    "description": "Implement a function to reverse an array in-place. Arrange the code fragments in the correct order.",
                     "language": "cpp",
                     "level": 3,
                     "fragments": [

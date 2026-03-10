@@ -176,16 +176,25 @@ const DragDropChallenge: React.FC<DragDropChallengeProps> = ({ challenge, user, 
     const fromDropZone = e.dataTransfer.getData('fromDropZone') === 'true';
 
     if (fromDropZone) {
-      // Reorder within drop zone
-      const newDropZone = dropZone.filter(f => f.id !== draggedItem.id);
+      // Reorder within drop zone - INSERT at position
+      const currentIndex = dropZone.findIndex(f => f.id === draggedItem.id);
+      const newDropZone = [...dropZone];
+      
+      // Remove from current position
+      newDropZone.splice(currentIndex, 1);
+      
+      // Insert at new position
       if (index !== undefined) {
-        newDropZone.splice(index, 0, draggedItem);
+        // Adjust index if dragging from before the drop position
+        const adjustedIndex = currentIndex < index ? index - 1 : index;
+        newDropZone.splice(adjustedIndex, 0, draggedItem);
       } else {
         newDropZone.push(draggedItem);
       }
+      
       setDropZone(newDropZone);
     } else {
-      // Add from fragments to drop zone
+      // Add from fragments to drop zone - INSERT at position
       setFragments(fragments.filter(f => f.id !== draggedItem.id));
       if (index !== undefined) {
         const newDropZone = [...dropZone];

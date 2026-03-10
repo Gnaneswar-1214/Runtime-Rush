@@ -1233,3 +1233,33 @@
               0 0 40px rgba(255, 0, 128, 0.4);
   transform: translateY(-2px);
 }
+
+
+/* Terminate button styling */
+.terminate-btn {
+  background: linear-gradient(135deg, #ff4444, #cc0000);
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(255, 68, 68, 0.3);
+}
+
+.terminate-btn:hover {
+  background: linear-gradient(135deg, #ff0000, #990000);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 68, 68, 0.5);
+}
+
+.terminate-btn:active {
+  transform: translateY(0);
+}
+
+.col-actions {
+  text-align: center;
+  padding: 12px;
+}

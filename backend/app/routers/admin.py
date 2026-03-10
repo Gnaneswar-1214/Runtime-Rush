@@ -114,6 +114,27 @@ async def get_stats(admin_id: str, db: Session = Depends(get_db)):
         }
     }
 
+@router.delete("/users/{user_id}")
+async def terminate_user(user_id: str, admin_id: str, db: Session = Depends(get_db)):
+    """Terminate (delete) a user account"""
+    verify_admin(admin_id, db)
+    
+    user = db.query(User).filter(User.id == user_id).first()
+    if not user:
+        raise HTTPException(status_code=404, detail="User not found")
+    
+    if user.role == 'admin':
+        raise HTTPException(status_code=403, detail="Cannot terminate admin users")
+    
+    # Delete user progress first (foreign key constraint)
+    db.query(UserProgress).filter(UserProgress.user_id == user_id).delete()
+    
+    # Delete user
+    db.delete(user)
+    db.commit()
+    
+    return {"message": f"User {user.username} terminated successfully"}
+
 @router.post("/create-admin")
 async def create_admin_user(username: str, email: str, password: str, db: Session = Depends(get_db)):
     """Create an admin user - use this once to create your first admin"""

@@ -94,6 +94,31 @@ const AdminDashboard: React.FC<AdminDashboardProps> = ({ user, onLogout, onAddCh
     }
   };
 
+  const handleTerminateUser = async (userId: string, username: string) => {
+    if (!window.confirm(`Are you sure you want to terminate user "${username}"? This action cannot be undone!`)) return;
+    
+    setLoading(true);
+    try {
+      const response = await fetch(
+        `${process.env.REACT_APP_API_URL || "https://runtime-rush-production.up.railway.app"}/api/admin/users/${userId}?admin_id=${user.id}`,
+        { method: "DELETE" }
+      );
+      
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.detail || "Failed to terminate user");
+      }
+      
+      alert(`User "${username}" has been terminated successfully`);
+      loadUsers();
+      loadStats();
+    } catch (err: any) {
+      alert(err.message || 'Failed to terminate user');
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const handleCreateChallenge = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
@@ -262,6 +287,7 @@ const AdminDashboard: React.FC<AdminDashboardProps> = ({ user, onLogout, onAddCh
                       <th className="col-level">LEVEL 2</th>
                       <th className="col-level">LEVEL 3</th>
                       <th className="col-time">TOTAL TIME</th>
+                      <th className="col-actions">ACTIONS</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -336,6 +362,15 @@ const AdminDashboard: React.FC<AdminDashboardProps> = ({ user, onLogout, onAddCh
                                   return `${mins}:${secs.toString().padStart(2, '0')}`;
                                 })()}
                               </div>
+                            </td>
+                            <td className="col-actions">
+                              <button
+                                className="terminate-btn"
+                                onClick={() => handleTerminateUser(u.id, u.username)}
+                                title="Terminate User"
+                              >
+                                🗑️ Terminate
+                              </button>
                             </td>
                           </tr>
                         );
