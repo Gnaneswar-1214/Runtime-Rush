@@ -154,9 +154,9 @@ def auto_initialize_database():
                     "level": 3,
                     "fragments": [
                         "def is_valid(s):\n    stack = []\n    pairs = {'(': ')', '{': '}', '[': ']'}",
-                        "    for char in s:\n        if char in pairs:",
-                        "            stack.append(char)\n        elif char in pairs.values():",
-                        "            if not stack or pairs[stack.pop()] != char:\n                return False\n    return len(stack) == 0"
+                        "    while left < right:",
+                        "        arr[left], arr[right] = arr[right], arr[left]",
+                        "        left += 1\n        right -= 1",\n                        "    return arr"
                     ]
                 },
                 {
@@ -165,9 +165,9 @@ def auto_initialize_database():
                     "language": "c",
                     "level": 3,
                     "fragments": [
-                        "bool isValid(char* s) {\n    char stack[10000];\n    int top = -1;",
+                        "void reverse_array(int arr[], int n) {\n    int left = 0, right = n - 1;",
                         "    for(int i = 0; s[i]; i++) {\n        if(s[i] == '(' || s[i] == '{' || s[i] == '[') {",
-                        "            stack[++top] = s[i];\n        } else {",
+                        "        int temp = arr[left];",
                         "            if(top == -1) return false;\n            char open = stack[top--];\n            if((s[i] == ')' && open != '(') || (s[i] == '}' && open != '{') || (s[i] == ']' && open != '[')) return false;\n        }\n    }\n    return top == -1;\n}"
                     ]
                 },
@@ -178,9 +178,9 @@ def auto_initialize_database():
                     "level": 3,
                     "fragments": [
                         "public static boolean isValid(String s) {\n    Stack<Character> stack = new Stack<>();\n    Map<Character, Character> pairs = Map.of('(', ')', '{', '}', '[', ']');",
-                        "    for (char c : s.toCharArray()) {\n        if (pairs.containsKey(c)) {",
-                        "            stack.push(c);\n        } else if (pairs.containsValue(c)) {",
-                        "            if (stack.isEmpty() || pairs.get(stack.pop()) != c) return false;\n        }\n    }\n    return stack.isEmpty();\n}"
+                        "    while(left < right) {",
+                        "        int temp = arr[left];",
+                        "        arr[left] = arr[right];\n        arr[right] = temp;",\n                        "        left++;\n        right--;\n    }\n}"
                     ]
                 },
                 {
@@ -190,9 +190,9 @@ def auto_initialize_database():
                     "level": 3,
                     "fragments": [
                         "bool isValid(string s) {\n    stack<char> st;\n    unordered_map<char, char> pairs = {{'(', ')'}, {'{', '}'}, {'[', ']'}};",
-                        "    for(char c : s) {\n        if(pairs.count(c)) {",
-                        "            st.push(c);\n        } else {",
-                        "            if(st.empty() || pairs[st.top()] != c) return false;\n            st.pop();\n        }\n    }\n    return st.empty();\n}"
+                        "    while(left < right) {",
+                        "        swap(arr[left], arr[right]);",
+                        "        left++;\n        right--;",\n                        "    }\n}"
                     ]
                 }
             ]
@@ -407,9 +407,9 @@ async def initialize_database():
                     "level": 3,
                     "fragments": [
                         "def is_valid(s):\n    stack = []\n    pairs = {'(': ')', '{': '}', '[': ']'}",
-                        "    for char in s:\n        if char in pairs:",
-                        "            stack.append(char)\n        elif char in pairs.values():",
-                        "            if not stack or pairs[stack.pop()] != char:\n                return False\n    return len(stack) == 0"
+                        "    while left < right:",
+                        "        arr[left], arr[right] = arr[right], arr[left]",
+                        "        left += 1\n        right -= 1",\n                        "    return arr"
                     ]
                 },
                 {
@@ -418,9 +418,9 @@ async def initialize_database():
                     "language": "c",
                     "level": 3,
                     "fragments": [
-                        "bool isValid(char* s) {\n    char stack[10000];\n    int top = -1;",
+                        "void reverse_array(int arr[], int n) {\n    int left = 0, right = n - 1;",
                         "    for(int i = 0; s[i]; i++) {\n        if(s[i] == '(' || s[i] == '{' || s[i] == '[') {",
-                        "            stack[++top] = s[i];\n        } else {",
+                        "        int temp = arr[left];",
                         "            if(top == -1) return false;\n            char open = stack[top--];\n            if((s[i] == ')' && open != '(') || (s[i] == '}' && open != '{') || (s[i] == ']' && open != '[')) return false;\n        }\n    }\n    return top == -1;\n}"
                     ]
                 },
@@ -431,9 +431,9 @@ async def initialize_database():
                     "level": 3,
                     "fragments": [
                         "public static boolean isValid(String s) {\n    Stack<Character> stack = new Stack<>();\n    Map<Character, Character> pairs = Map.of('(', ')', '{', '}', '[', ']');",
-                        "    for (char c : s.toCharArray()) {\n        if (pairs.containsKey(c)) {",
-                        "            stack.push(c);\n        } else if (pairs.containsValue(c)) {",
-                        "            if (stack.isEmpty() || pairs.get(stack.pop()) != c) return false;\n        }\n    }\n    return stack.isEmpty();\n}"
+                        "    while(left < right) {",
+                        "        int temp = arr[left];",
+                        "        arr[left] = arr[right];\n        arr[right] = temp;",\n                        "        left++;\n        right--;\n    }\n}"
                     ]
                 },
                 {
@@ -443,9 +443,9 @@ async def initialize_database():
                     "level": 3,
                     "fragments": [
                         "bool isValid(string s) {\n    stack<char> st;\n    unordered_map<char, char> pairs = {{'(', ')'}, {'{', '}'}, {'[', ']'}};",
-                        "    for(char c : s) {\n        if(pairs.count(c)) {",
-                        "            st.push(c);\n        } else {",
-                        "            if(st.empty() || pairs[st.top()] != c) return false;\n            st.pop();\n        }\n    }\n    return st.empty();\n}"
+                        "    while(left < right) {",
+                        "        swap(arr[left], arr[right]);",
+                        "        left++;\n        right--;",\n                        "    }\n}"
                     ]
                 }
             ]
