@@ -153,10 +153,11 @@ def auto_initialize_database():
                     "language": "python",
                     "level": 3,
                     "fragments": [
-                        "def is_valid(s):\n    stack = []\n    pairs = {'(': ')', '{': '}', '[': ']'}",
+                        "def reverse_array(arr):\n    left = 0\n    right = len(arr) - 1",
                         "    while left < right:",
                         "        arr[left], arr[right] = arr[right], arr[left]",
-                        "        left += 1\n        right -= 1",\n                        "    return arr"
+                        "        left += 1\n        right -= 1",
+                        "    return arr"
                     ]
                 },
                 {
@@ -166,9 +167,10 @@ def auto_initialize_database():
                     "level": 3,
                     "fragments": [
                         "void reverse_array(int arr[], int n) {\n    int left = 0, right = n - 1;",
-                        "    for(int i = 0; s[i]; i++) {\n        if(s[i] == '(' || s[i] == '{' || s[i] == '[') {",
+                        "    while(left < right) {",
                         "        int temp = arr[left];",
-                        "            if(top == -1) return false;\n            char open = stack[top--];\n            if((s[i] == ')' && open != '(') || (s[i] == '}' && open != '{') || (s[i] == ']' && open != '[')) return false;\n        }\n    }\n    return top == -1;\n}"
+                        "        arr[left] = arr[right];\n        arr[right] = temp;",
+                        "        left++;\n        right--;\n    }\n}"
                     ]
                 },
                 {
@@ -177,10 +179,11 @@ def auto_initialize_database():
                     "language": "java",
                     "level": 3,
                     "fragments": [
-                        "public static boolean isValid(String s) {\n    Stack<Character> stack = new Stack<>();\n    Map<Character, Character> pairs = Map.of('(', ')', '{', '}', '[', ']');",
+                        "public static void reverseArray(int[] arr) {\n    int left = 0, right = arr.length - 1;",
                         "    while(left < right) {",
                         "        int temp = arr[left];",
-                        "        arr[left] = arr[right];\n        arr[right] = temp;",\n                        "        left++;\n        right--;\n    }\n}"
+                        "        arr[left] = arr[right];\n        arr[right] = temp;",
+                        "        left++;\n        right--;\n    }\n}"
                     ]
                 },
                 {
@@ -189,9 +192,13 @@ def auto_initialize_database():
                     "language": "cpp",
                     "level": 3,
                     "fragments": [
-                        "bool isValid(string s) {\n    stack<char> st;\n    unordered_map<char, char> pairs = {{'(', ')'}, {'{', '}'}, {'[', ']'}};",
+                        "void reverseArray(vector<int>& arr) {\n    int left = 0, right = arr.size() - 1;",
                         "    while(left < right) {",
                         "        swap(arr[left], arr[right]);",
+                        "        left++;\n        right--;",
+                        "    }\n}"
+                    ]
+                }
                         "        left++;\n        right--;",\n                        "    }\n}"
                     ]
                 }
@@ -406,10 +413,11 @@ async def initialize_database():
                     "language": "python",
                     "level": 3,
                     "fragments": [
-                        "def is_valid(s):\n    stack = []\n    pairs = {'(': ')', '{': '}', '[': ']'}",
+                        "def reverse_array(arr):\n    left = 0\n    right = len(arr) - 1",
                         "    while left < right:",
                         "        arr[left], arr[right] = arr[right], arr[left]",
-                        "        left += 1\n        right -= 1",\n                        "    return arr"
+                        "        left += 1\n        right -= 1",
+                        "    return arr"
                     ]
                 },
                 {
@@ -419,9 +427,10 @@ async def initialize_database():
                     "level": 3,
                     "fragments": [
                         "void reverse_array(int arr[], int n) {\n    int left = 0, right = n - 1;",
-                        "    for(int i = 0; s[i]; i++) {\n        if(s[i] == '(' || s[i] == '{' || s[i] == '[') {",
+                        "    while(left < right) {",
                         "        int temp = arr[left];",
-                        "            if(top == -1) return false;\n            char open = stack[top--];\n            if((s[i] == ')' && open != '(') || (s[i] == '}' && open != '{') || (s[i] == ']' && open != '[')) return false;\n        }\n    }\n    return top == -1;\n}"
+                        "        arr[left] = arr[right];\n        arr[right] = temp;",
+                        "        left++;\n        right--;\n    }\n}"
                     ]
                 },
                 {
@@ -430,10 +439,11 @@ async def initialize_database():
                     "language": "java",
                     "level": 3,
                     "fragments": [
-                        "public static boolean isValid(String s) {\n    Stack<Character> stack = new Stack<>();\n    Map<Character, Character> pairs = Map.of('(', ')', '{', '}', '[', ']');",
+                        "public static void reverseArray(int[] arr) {\n    int left = 0, right = arr.length - 1;",
                         "    while(left < right) {",
                         "        int temp = arr[left];",
-                        "        arr[left] = arr[right];\n        arr[right] = temp;",\n                        "        left++;\n        right--;\n    }\n}"
+                        "        arr[left] = arr[right];\n        arr[right] = temp;",
+                        "        left++;\n        right--;\n    }\n}"
                     ]
                 },
                 {
@@ -442,9 +452,13 @@ async def initialize_database():
                     "language": "cpp",
                     "level": 3,
                     "fragments": [
-                        "bool isValid(string s) {\n    stack<char> st;\n    unordered_map<char, char> pairs = {{'(', ')'}, {'{', '}'}, {'[', ']'}};",
+                        "void reverseArray(vector<int>& arr) {\n    int left = 0, right = arr.size() - 1;",
                         "    while(left < right) {",
                         "        swap(arr[left], arr[right]);",
+                        "        left++;\n        right--;",
+                        "    }\n}"
+                    ]
+                }
                         "        left++;\n        right--;",\n                        "    }\n}"
                     ]
                 }
